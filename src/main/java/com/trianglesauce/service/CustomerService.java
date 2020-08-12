@@ -1,9 +1,9 @@
 package com.trianglesauce.service;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
-import com.trianglesauce.dto.CustomerDto;
+import com.trianglesauce.dto.CustomerCsv;
 
 public interface CustomerService {
 
-	String createCsv(CustomerDto dto) throws JsonProcessingException;
+	String createCsv(CustomerCsv customerCsv) throws JsonProcessingException;
 }

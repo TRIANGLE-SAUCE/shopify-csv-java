@@ -13,49 +13,49 @@ import com.trianglesauce.enums.TaxExempt;
 		"Note", "Tax Exempt", "Metafield Namespace", "Metafield Key", "Metafield Value",
 		"Metafield Value Type"
 })
-public final class CustomerDto {
+public final class CustomerCsv {
 	@JsonProperty("First Name")
-	private String firstName;
+	private final  String firstName;
 	@JsonProperty("Last Name")
-	private String lastName;
+	private final String lastName;
 	@JsonProperty("Email")
-	private String email;
+	private final String email;
 	@JsonProperty("Company")
-	private String company;
+	private final String company;
 	@JsonProperty("Address1")
-	private String address1;
+	private final String address1;
 	@JsonProperty("Address2")
-	private String address2;
+	private final String address2;
 	@JsonProperty("City")
-	private String city;
+	private final String city;
 	@JsonProperty("Province")
-	private String province;
+	private final String province;
 	@JsonProperty("Province Code")
-	private String provinceCode;
+	private final String provinceCode;
 	@JsonProperty("Country")
-	private String country;
+	private final String country;
 	@JsonProperty("Country Code")
-	private String countryCode;
+	private final String countryCode;
 	@JsonProperty("Zip")
-	private String zip;
+	private final String zip;
 	@JsonProperty("Phone")
-	private String phone;
+	private final String phone;
 	@JsonProperty("Accepts Marketing")
-	private AcceptsMarketing acceptsMarketing;
+	private final AcceptsMarketing acceptsMarketing;
 	@JsonProperty("Tags")
-	private String tags;
+	private final String tags;
 	@JsonProperty("Note")
-	private String note;
+	private final String note;
 	@JsonProperty("Tax Exempt")
-	private TaxExempt taxExempt;
+	private final TaxExempt taxExempt;
 	@JsonProperty("Metafield Namespace")
-	private String metafieldNamespace;
+	private final String metafieldNamespace;
 	@JsonProperty("Metafield Key")
-	private String metafieldKey;
+	private final String metafieldKey;
 	@JsonProperty("Metafield Value")
-	private String metafieldValue;
+	private final String metafieldValue;
 	@JsonProperty("Metafield Value Type")
-	private MetafieldValueType metafieldValueType;
+	private final MetafieldValueType metafieldValueType;
 
 	public String getFirstName() {
 		return firstName;
@@ -141,9 +141,11 @@ public final class CustomerDto {
 		return metafieldValueType;
 	}
 
-	private CustomerDto() {}
+	public boolean hasMetafield() {
+		return getMetafieldNamespace() != null;
+	}
 
-	private CustomerDto(
+	private CustomerCsv(
 			String firstName,
 			String lastName,
 			String email,
@@ -188,7 +190,7 @@ public final class CustomerDto {
 		this.metafieldValueType = metafieldValueType;
 	}
 
-	public static class CustomerDtoBuilder {
+	public static class CustomerCsvBuilder {
 		private String firstName;
 		private String lastName;
 		private String email;
@@ -211,113 +213,113 @@ public final class CustomerDto {
 		private String metafieldValue;
 		private MetafieldValueType metafieldValueType;
 
-		private CustomerDtoBuilder() {}
+		private CustomerCsvBuilder() {}
 
-		public static CustomerDtoBuilder builder() {
-			return new CustomerDtoBuilder();
+		public static CustomerCsvBuilder builder() {
+			return new CustomerCsvBuilder();
 		}
 
-		public CustomerDtoBuilder firstName(String firstName) {
+		public CustomerCsvBuilder firstName(String firstName) {
 			this.firstName = firstName;
 			return this;
 		}
 
-		public CustomerDtoBuilder lastName(String lastName) {
+		public CustomerCsvBuilder lastName(String lastName) {
 			this.lastName = lastName;
 			return this;
 		}
 
-		public CustomerDtoBuilder email(String email) {
+		public CustomerCsvBuilder email(String email) {
 			this.email = email;
 			return this;
 		}
 
-		public CustomerDtoBuilder company(String company) {
+		public CustomerCsvBuilder company(String company) {
 			this.company = company;
 			return this;
 		}
 
-		public CustomerDtoBuilder address1(String address1) {
+		public CustomerCsvBuilder address1(String address1) {
 			this.address1 = address1;
 			return this;
 		}
 
-		public CustomerDtoBuilder address2(String address2) {
+		public CustomerCsvBuilder address2(String address2) {
 			this.address2 = address2;
 			return this;
 		}
 
-		public CustomerDtoBuilder city(String city) {
+		public CustomerCsvBuilder city(String city) {
 			this.city = city;
 			return this;
 		}
 
-		public CustomerDtoBuilder province(String province) {
+		public CustomerCsvBuilder province(String province) {
 			this.province = province;
 			return this;
 		}
 
-		public CustomerDtoBuilder provinceCode(String provinceCode) {
+		public CustomerCsvBuilder provinceCode(String provinceCode) {
 			this.provinceCode = provinceCode;
 			return this;
 		}
 
-		public CustomerDtoBuilder country(String country) {
+		public CustomerCsvBuilder country(String country) {
 			this.country = country;
 			return this;
 		}
 
-		public CustomerDtoBuilder countryCode(String countryCode) {
+		public CustomerCsvBuilder countryCode(String countryCode) {
 			this.countryCode = countryCode;
 			return this;
 		}
 
-		public CustomerDtoBuilder zip(String zip) {
+		public CustomerCsvBuilder zip(String zip) {
 			this.zip = zip;
 			return this;
 		}
 
-		public CustomerDtoBuilder phone(String phone) {
+		public CustomerCsvBuilder phone(String phone) {
 			this.phone = phone;
 			return this;
 		}
 
-		public CustomerDtoBuilder acceptsMarketing(AcceptsMarketing acceptsMarketing) {
+		public CustomerCsvBuilder acceptsMarketing(AcceptsMarketing acceptsMarketing) {
 			this.acceptsMarketing = acceptsMarketing;
 			return this;
 		}
 
-		public CustomerDtoBuilder tags(String tags) {
+		public CustomerCsvBuilder tags(String tags) {
 			this.tags = tags;
 			return this;
 		}
 
-		public CustomerDtoBuilder note(String note) {
+		public CustomerCsvBuilder note(String note) {
 			this.note = note;
 			return this;
 		}
 
-		public CustomerDtoBuilder taxExempt(TaxExempt taxExempt) {
+		public CustomerCsvBuilder taxExempt(TaxExempt taxExempt) {
 			this.taxExempt = taxExempt;
 			return this;
 		}
 
-		public CustomerDtoBuilder metafieldNamespace(String metafieldNamespace) {
+		public CustomerCsvBuilder metafieldNamespace(String metafieldNamespace) {
 			this.metafieldNamespace = metafieldNamespace;
 			return this;
 		}
 
-		public CustomerDtoBuilder metafieldKey(String metafieldKey) {
+		public CustomerCsvBuilder metafieldKey(String metafieldKey) {
 			this.metafieldKey = metafieldKey;
 			return this;
 		}
 
-		public CustomerDtoBuilder metafieldValue(String metafieldValue) {
+		public CustomerCsvBuilder metafieldValue(String metafieldValue) {
 			this.metafieldValue = metafieldValue;
 			return this;
 		}
 
-		public CustomerDtoBuilder metafieldValueType(MetafieldValueType metafieldValueType) {
+		public CustomerCsvBuilder metafieldValueType(MetafieldValueType metafieldValueType) {
 			this.metafieldValueType = metafieldValueType;
 			return this;
 		}
@@ -326,8 +328,8 @@ public final class CustomerDto {
 			return metafieldKey != null || metafieldValue != null || metafieldValueType != null;
 		}
 
-		public CustomerDto build() {
-			return new CustomerDto(
+		public CustomerCsv build() {
+			return new CustomerCsv(
 					firstName,
 					lastName,
 					email,
