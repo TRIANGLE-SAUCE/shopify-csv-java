@@ -5,7 +5,7 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>com.triangle-sauce</groupId>
-	<artifactId>shopify-csv-import</artifactId>
+	<artifactId>shopify-csv-java</artifactId>
 	<version>1.0-SNAPSHOT</version>
 
 	<properties>
