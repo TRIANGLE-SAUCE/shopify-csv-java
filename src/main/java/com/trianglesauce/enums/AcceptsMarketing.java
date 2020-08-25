@@ -6,11 +6,11 @@ public enum AcceptsMarketing {
 	YES("yes"),
 	NO("no");
 
+	private final String code;
+
 	AcceptsMarketing(String code) {
 		this.code = code;
 	}
-
-	private final String code;
 
 	@JsonValue
 	public String getCode() {

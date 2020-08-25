@@ -7,11 +7,11 @@ public enum MetafieldValueType {
 	INTEGER("integer"),
 	JSON_STRING("json_string");
 
+	private final String code;
+
 	MetafieldValueType(String code) {
 		this.code = code;
 	}
-
-	private final String code;
 
 	@JsonValue
 	public String getCode() {

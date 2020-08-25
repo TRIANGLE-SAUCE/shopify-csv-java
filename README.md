@@ -2,9 +2,9 @@
 
 The **Shopify CSV for Java** enables to Java developers to easily create csv file of import for shopify.  
 Please refer to the floowing link about csv file of import for shopify.
-- [customers csv](https://help.shopify.com/en/manual/migrating-to-shopify/transporter-app/csv-customers)
-- [products csv](https://help.shopify.com/en/manual/migrating-to-shopify/transporter-app/csv-products)
-- [orders csv](https://help.shopify.com/en/manual/migrating-to-shopify/transporter-app/csv-orders)
+-  [customers csv](https://help.shopify.com/en/manual/migrating-to-shopify/transporter-app/csv-customers)
+-  [products csv](https://help.shopify.com/en/manual/migrating-to-shopify/transporter-app/csv-products)
+-  [orders csv](https://help.shopify.com/en/manual/migrating-to-shopify/transporter-app/csv-orders)
 
 ## Getting Started
 TBD

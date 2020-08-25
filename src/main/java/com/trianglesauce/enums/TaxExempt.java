@@ -6,11 +6,11 @@ public enum TaxExempt {
 	YES("yes"),
 	NO("no");
 
+	private final String code;
+
 	TaxExempt(String code) {
 		this.code = code;
 	}
-
-	private final String code;
 
 	@JsonValue
 	public String getCode() {
