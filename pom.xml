@@ -107,6 +107,13 @@
 						</goals>
 					</execution>
 				</executions>
+				<configuration>
+					<excludes>
+						<exclude>**/*.md</exclude>
+						<exclude>**/*.yml</exclude>
+						<exclude>**/*.xml</exclude>
+					</excludes>
+				</configuration>
 			</plugin>
 		</plugins>
 	</build>
