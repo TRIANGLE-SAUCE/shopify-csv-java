@@ -1,6 +1,8 @@
 package com.trianglesauce.validator;
 
-public interface DtoValidator {
+import com.trianglesauce.dto.Csv;
+
+public interface CsvValidator<T extends Csv> {
 
 	default boolean hasText(String value) {
 		if (value == null) {
@@ -8,4 +10,6 @@ public interface DtoValidator {
 		}
 		return !value.isBlank();
 	}
+
+	void validate(T csv);
 }

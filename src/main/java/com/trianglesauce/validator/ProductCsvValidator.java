@@ -4,7 +4,7 @@ import com.trianglesauce.dto.ProductCsv;
 import com.trianglesauce.enums.VariantFullfillmentService;
 import com.trianglesauce.util.Assert;
 
-public class ProductCsvValidator implements DtoValidator {
+public class ProductCsvValidator implements CsvValidator<ProductCsv> {
 
 	private static final int TAGS_LENGTH = 255;
 	private static final int OPTIONAL_NAME_LENGTH = 255;
@@ -18,6 +18,7 @@ public class ProductCsvValidator implements DtoValidator {
 		return new ProductCsvValidator();
 	}
 
+	@Override
 	public void validate(ProductCsv productCsv) {
 		// handle
 		Assert.notNull(productCsv.getHandle(), "handle must not be null.");

@@ -1,17 +1,31 @@
 package com.trianglesauce.dto;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.trianglesauce.enums.MetafieldValueType;
 import com.trianglesauce.enums.PublishScope;
 import com.trianglesauce.enums.VariantFullfillmentService;
 import com.trianglesauce.enums.VariantInventoryPolicy;
 import com.trianglesauce.enums.VariantInventoryTracker;
 import com.trianglesauce.enums.VariantWeightUnit;
+import com.trianglesauce.serializer.ZonedDateTimeSerializer;
 
 import java.math.BigDecimal;
 import java.time.ZonedDateTime;
 
-public final class ProductCsv {
+@JsonPropertyOrder({
+		"Handle", "Title", "Body", "Vendor", "Type", "Tags", "Template Suffix", "Published Scope",
+		"Published", "Published At", "Option1 Name", "Option1 Value", "Option2 Name", "Option2 Value",
+		"Option3 Name", "Option3 Value", "Variant SKU", "Metafields Global Title Tag",
+		"Metafields Global Description Tag", "Metafield Namespace", "Metafield Key", "Metafield Value",
+		"Metafield Value Type", "Variant Grams", "Variant Inventory Trackers", "Variant Inventory Qty",
+		"Variant Inventory Policy", "Variant Inventory Cost", "Variant Fullfillment Service",
+		"Variant Price", "Variant Compare At Price", "Variant Requires Shipping", "Variant Taxable",
+		"Variant Barcode", "Image Attachment", "Image Src", "Image Position", "Image Alt Text",
+		"Variant Image", "Variant Weight", "Variant Weight Unit", "Variant Tax Code",
+})
+public final class ProductCsv implements Csv {
 	@JsonProperty("Handle")
 	private final String handle;
 	@JsonProperty("Title")
@@ -31,6 +45,7 @@ public final class ProductCsv {
 	@JsonProperty("Published")
 	private final boolean published;
 	@JsonProperty("Published At")
+	@JsonSerialize(using = ZonedDateTimeSerializer.class)
 	private final ZonedDateTime publishedAt;
 	@JsonProperty("Option1 Name")
 	private final String option1Name;

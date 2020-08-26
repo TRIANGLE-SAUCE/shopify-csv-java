@@ -13,7 +13,7 @@ import com.trianglesauce.enums.TaxExempt;
 		"Note", "Tax Exempt", "Metafield Namespace", "Metafield Key", "Metafield Value",
 		"Metafield Value Type"
 })
-public final class CustomerCsv {
+public final class CustomerCsv implements Csv {
 	@JsonProperty("First Name")
 	private final  String firstName;
 	@JsonProperty("Last Name")

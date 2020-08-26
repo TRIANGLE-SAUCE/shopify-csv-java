@@ -1,14 +1,15 @@
-package com.trianglesauce.service.impl;
+package com.trianglesauce.factory;
 
 import com.trianglesauce.dto.CustomerCsv;
 import com.trianglesauce.enums.MetafieldValueType;
-import com.trianglesauce.service.CustomerService;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-class CustomerServiceImplTest {
+import java.util.Collections;
 
-	public final CustomerService customerService = new CustomerServiceImpl();
+class CustomerCsvFactoryTest {
+
+	private final CsvFactory<CustomerCsv> factory = new CustomerCsvFactory();
 
 	@Test
 	void createCsv() throws Exception {
@@ -31,11 +32,10 @@ class CustomerServiceImplTest {
 				.metafieldValue("test-value")
 				.metafieldValueType(MetafieldValueType.STRING)
 				.build();
-		Assertions.assertThat(customerService.createCsv(customerCsv))
+		Assertions.assertThat(factory.create(Collections.singletonList(customerCsv)))
 				.isEqualTo(
 						"\"First Name\",\"Last Name\",Email,Company,Address1,Address2,City,Province,\"Province Code\",Country,\"Country Code\",Zip,Phone,\"Accepts Marketing\",Tags,Note,\"Tax Exempt\",\"Metafield Namespace\",\"Metafield Key\",\"Metafield Value\",\"Metafield Value Type\"\n" +
-						"Taro,Tanaka,test@triangle-sauce.com,\"build&scrap,inc\",\"1-11-17 Ebisu\",,\"Shibuya Ward\",Tokyo,13,Japan,JP,150-0022,1234567,no,\"tag1,tag2,tag3\",triangle-sauce,no,global,test-key,test-value,string\n");
+								"Taro,Tanaka,test@triangle-sauce.com,\"build&scrap,inc\",\"1-11-17 Ebisu\",,\"Shibuya Ward\",Tokyo,13,Japan,JP,150-0022,1234567,no,\"tag1,tag2,tag3\",triangle-sauce,no,global,test-key,test-value,string\n");
 	}
-
 
 }

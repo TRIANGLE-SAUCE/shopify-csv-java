@@ -7,7 +7,7 @@ import org.apache.commons.validator.routines.EmailValidator;
 import java.util.Locale;
 import java.util.Set;
 
-public class CustomerCsvValidator implements DtoValidator {
+public class CustomerCsvValidator implements CsvValidator<CustomerCsv> {
 
 	private static final EmailValidator EMAIL_VALIDATOR = EmailValidator.getInstance();
 	private static final Set<String> ALPHA2_COUNTRY_CODES =
@@ -23,6 +23,7 @@ public class CustomerCsvValidator implements DtoValidator {
 		return new CustomerCsvValidator();
 	}
 
+	@Override
 	public void validate(CustomerCsv customerCsv) {
 		// unique keys
 		validateUniqueKeys(customerCsv);
