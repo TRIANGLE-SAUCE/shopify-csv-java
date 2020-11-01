@@ -14,11 +14,11 @@
 		<java.version>11</java.version>
 		<maven.compiler.target>${java.version}</maven.compiler.target>
 		<maven.compiler.source>${java.version}</maven.compiler.source>
-		<jackson.version>2.11.1</jackson.version>
+		<jackson.version>2.11.3</jackson.version>
 		<apache.commons.validator.version>1.7</apache.commons.validator.version>
-		<junit.platform.version>1.6.2</junit.platform.version>
-		<junit.jupiter.version>5.6.2</junit.jupiter.version>
-		<assertj.core.version>3.16.1</assertj.core.version>
+		<junit.platform.version>1.7.0</junit.platform.version>
+		<junit.jupiter.version>5.7.0</junit.jupiter.version>
+		<assertj.core.version>3.18.0</assertj.core.version>
 	</properties>
 
 	<dependencies>
