@@ -5,10 +5,6 @@ import com.trianglesauce.util.Assert;
 
 public class OrderCsvValidator implements CsvValidator<OrderCsv> {
 
-	private static final int TAGS_LENGTH = 255;
-	private static final int METAFIELD_NAMESPACE_LENGTH = 20;
-	private static final int METAFIELD_KEY_LENGTH = 30;
-
 	private OrderCsvValidator() {}
 
 	public static OrderCsvValidator getInstance() {
@@ -19,19 +15,12 @@ public class OrderCsvValidator implements CsvValidator<OrderCsv> {
 	public void validate(OrderCsv orderCsv) {
 		Assert.notNull(orderCsv.getName(), "name must not be null.");
 
-		if (orderCsv.getEmail() != null && !EMAIL_VALIDATOR.isValid(orderCsv.getEmail())) {
-			throw new IllegalArgumentException("email is invalid format.");
-		}
+		validateEmail(orderCsv.getEmail(), "email is invalid format.");
 
-		// tax
 		validateTax(orderCsv);
 
-		// tags
-		if (hasText(orderCsv.getTags()) && orderCsv.getTags().length() > TAGS_LENGTH) {
-			throw new IllegalArgumentException("tags must not be greater than " + TAGS_LENGTH + ".");
-		}
+		validateTags(orderCsv.getTags());
 
-		// transaction
 		validateTransaction(orderCsv);
 
 		// shipping province code
@@ -101,16 +90,16 @@ public class OrderCsvValidator implements CsvValidator<OrderCsv> {
 	private void validateMetafield(OrderCsv orderCsv) {
 		if (orderCsv.hasMetafield()) {
 			Assert.notNull(orderCsv.getMetafieldKey(), "metafield key must not be null.");
-			if (orderCsv.getMetafieldKey().length() > METAFIELD_KEY_LENGTH) {
-				throw new IllegalArgumentException("metafield key must not be greater than " + METAFIELD_KEY_LENGTH + ".");
+			if (orderCsv.getMetafieldKey().length() > getMetafieldKeyLength()) {
+				throw new IllegalArgumentException("metafield key must not be greater than " + getMetafieldKeyLength() + ".");
 			}
 
 			Assert.notNull(orderCsv.getMetafieldValue(), "metafield value must not be null.");
 			Assert.notNull(orderCsv.getMetafieldValueType(), "metafield value type must not be null.");
 
 			Assert.notNull(orderCsv.getMetafieldNamespace(), "metafield namespace must not be null");
-			if (orderCsv.getMetafieldNamespace().length() > METAFIELD_NAMESPACE_LENGTH) {
-				throw new IllegalArgumentException("metafield namespace must not be greater than " + METAFIELD_NAMESPACE_LENGTH + ".");
+			if (orderCsv.getMetafieldNamespace().length() > getMetafieldNamespaceLength()) {
+				throw new IllegalArgumentException("metafield namespace must not be greater than " + getMetafieldNamespaceLength() + ".");
 			}
 		}
 	}

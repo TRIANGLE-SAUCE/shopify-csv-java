@@ -1,8 +1,5 @@
 package com.trianglesauce.dto;
 
-import com.trianglesauce.enums.PublishScope;
-import com.trianglesauce.enums.VariantFullfillmentService;
-import com.trianglesauce.enums.VariantInventoryPolicy;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -14,20 +11,20 @@ class ProductCsvTest {
 	@Test
 	void createProductCsv() {
 		ZonedDateTime jstNow = ZonedDateTime.now(ZoneId.of("JST", ZoneId.SHORT_IDS));
-		ProductCsv actual = ProductCsv.ProductCsvBuilder.builder()
-				.handle("titan-t-shirt")
-				.title("Titan t-shirt")
-				.body("You'll be sure to turn heads in this t-shirt made of <b>100% cotton</b>")
-				.vendor("Titan Incorporated")
-				.publishedAt(jstNow)
-				.option1Name("Color")
-				.option1Value("red")
-				.option2Name("Size")
-				.option2Value("small")
-				.option3Name("Material")
-				.option3Value("wool")
-				.variantSKU("IPOD2008PINK")
-				.metafieldNamespace("global")
+		ProductCsv actual = new ProductCsvBuilder()
+				.withHandle("titan-t-shirt")
+				.withTitle("Titan t-shirt")
+				.withBody("You'll be sure to turn heads in this t-shirt made of <b>100% cotton</b>")
+				.withVendor("Titan Incorporated")
+				.withPublishedAt(jstNow)
+				.withOption1Name("Color")
+				.withOption1Value("red")
+				.withOption2Name("Size")
+				.withOption2Value("small")
+				.withOption3Name("Material")
+				.withOption3Value("wool")
+				.withVariantSKU("IPOD2008PINK")
+				.withMetafieldNamespace("global")
 				.build();
 
 		Assertions.assertThat(actual)
@@ -40,7 +37,7 @@ class ProductCsvTest {
 						ProductCsv::getTags,
 						ProductCsv::getTemplateSuffix,
 						ProductCsv::getPublishedScope,
-						ProductCsv::isPublished,
+						ProductCsv::getPublished,
 						ProductCsv::getPublishedAt,
 						ProductCsv::getOption1Name,
 						ProductCsv::getOption1Value,
@@ -52,8 +49,8 @@ class ProductCsvTest {
 						ProductCsv::getMetafieldNamespace,
 						ProductCsv::getVariantInventoryPolicy,
 						ProductCsv::getVariantFullfillmentService,
-						ProductCsv::isVariantRequiresShipping,
-						ProductCsv::isVariantTaxable,
+						ProductCsv::getVariantRequiresShipping,
+						ProductCsv::getVariantTaxable,
 						ProductCsv::getVariantWeight)
 				.containsExactly(
 						"titan-t-shirt",
@@ -61,10 +58,10 @@ class ProductCsvTest {
 						"You'll be sure to turn heads in this t-shirt made of <b>100% cotton</b>",
 						"Titan Incorporated",
 						null,
-						"",
 						null,
-						PublishScope.GLOBAL,
-						true,
+						null,
+						null,
+						null,
 						jstNow,
 						"Color",
 						"red",
@@ -74,10 +71,10 @@ class ProductCsvTest {
 						"wool",
 						"IPOD2008PINK",
 						"global",
-						VariantInventoryPolicy.DENY,
-						VariantFullfillmentService.MANUAL,
-						true,
-						true,
+						null,
+						null,
+						null,
+						null,
 						null);
 	}
 }

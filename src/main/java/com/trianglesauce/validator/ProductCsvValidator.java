@@ -6,10 +6,7 @@ import com.trianglesauce.util.Assert;
 
 public class ProductCsvValidator implements CsvValidator<ProductCsv> {
 
-	private static final int TAGS_LENGTH = 255;
 	private static final int OPTIONAL_NAME_LENGTH = 255;
-	private static final int METAFIELD_NAMESPACE_LENGTH = 20;
-	private static final int METAFIELD_KEY_LENGTH = 30;
 	private static final int IMAGE_ALT_TEXT_LENGTH = 512;
 
 	private ProductCsvValidator() {}
@@ -27,17 +24,12 @@ public class ProductCsvValidator implements CsvValidator<ProductCsv> {
 		Assert.notNull(productCsv.getTitle(), "title must not be null.");
 
 		// tags
-		if (hasText(productCsv.getTags()) && productCsv.getTags().length() > TAGS_LENGTH) {
-			throw new IllegalArgumentException("tags must not be greater than " + TAGS_LENGTH + ".");
+		if (hasText(productCsv.getTags()) && productCsv.getTags().length() > getTagsLength()) {
+			throw new IllegalArgumentException("tags must not be greater than " + getTagsLength() + ".");
 		}
-
-		// published scope
-		Assert.notNull(productCsv.getPublishedScope(), "published scope must not be null.");
 
 		// published
-		if (!productCsv.isPublished() && productCsv.getPublishedAt() != null) {
-			throw new IllegalArgumentException("publishedAt cannot be specified when published is false.");
-		}
+		validatePublished(productCsv);
 
 		// option1 name
 		if (hasText(productCsv.getOption1Name()) && productCsv.getOption1Name().length() > OPTIONAL_NAME_LENGTH) {
@@ -65,27 +57,33 @@ public class ProductCsvValidator implements CsvValidator<ProductCsv> {
 		}
 	}
 
+	private void validatePublished(ProductCsv productCsv) {
+		if (productCsv.getPublished() == null) {
+			return;
+		}
+		if (!productCsv.getPublished() && productCsv.getPublishedAt() != null) {
+			throw new IllegalArgumentException("publishedAt cannot be specified when published is false.");
+		}
+	}
+
 	private void validateMetafield(ProductCsv productCsv) {
 		if (productCsv.hasMetafield()) {
 			Assert.notNull(productCsv.getMetafieldKey(), "metafield key must not be null");
-			if (productCsv.getMetafieldKey().length() > METAFIELD_KEY_LENGTH) {
-				throw new IllegalArgumentException("metafield key must not be greater than " + METAFIELD_KEY_LENGTH + ".");
+			if (productCsv.getMetafieldKey().length() > getMetafieldKeyLength()) {
+				throw new IllegalArgumentException("metafield key must not be greater than " + getMetafieldKeyLength() + ".");
 			}
 
 			Assert.notNull(productCsv.getMetafieldValue(), "metafield value must not be null.");
 			Assert.notNull(productCsv.getMetafieldValueType(), "metafield value type must not be null.");
 
 			Assert.notNull(productCsv.getMetafieldNamespace(), "metafield namespace must not be null");
-			if (productCsv.getMetafieldNamespace().length() > METAFIELD_NAMESPACE_LENGTH) {
-				throw new IllegalArgumentException("metafield namespace must not be greater than " + METAFIELD_NAMESPACE_LENGTH + ".");
+			if (productCsv.getMetafieldNamespace().length() > getMetafieldNamespaceLength()) {
+				throw new IllegalArgumentException("metafield namespace must not be greater than " + getMetafieldNamespaceLength() + ".");
 			}
 		}
 	}
 
 	private void validateVariant(ProductCsv productCsv) {
-		Assert.notNull(productCsv.getVariantInventoryPolicy(), "variant inventory policy must not be null.");
-		Assert.notNull(productCsv.getVariantFullfillmentService(), "variant fullfillment service must not be null.");
-
 		if (productCsv.getVariantFullfillmentService() == VariantFullfillmentService.HANDLE_OF_THE_FULFILLMENT_SERVICE) {
 			Assert.notNull(productCsv.getVariantSKU(), "variant sku must be specified when variant fullfillment service is handle of the fullfillment service.");
 		} else if (productCsv.getVariantSKU() != null){

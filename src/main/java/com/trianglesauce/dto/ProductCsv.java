@@ -43,7 +43,7 @@ public final class ProductCsv implements Csv {
 	@JsonProperty("Published Scope")
 	private final PublishScope publishedScope;
 	@JsonProperty("Published")
-	private final boolean published;
+	private final Boolean published;
 	@JsonProperty("Published At")
 	@JsonSerialize(using = ZonedDateTimeSerializer.class)
 	private final ZonedDateTime publishedAt;
@@ -78,7 +78,7 @@ public final class ProductCsv implements Csv {
 	@JsonProperty("Variant Inventory Trackers")
 	private final VariantInventoryTracker variantInventoryTracker;
 	@JsonProperty("Variant Inventory Qty")
-	private final int variantInventoryQty;
+	private final Integer variantInventoryQty;
 	@JsonProperty("Variant Inventory Policy")
 	private final VariantInventoryPolicy variantInventoryPolicy;
 	@JsonProperty("Variant Inventory Cost")
@@ -90,9 +90,9 @@ public final class ProductCsv implements Csv {
 	@JsonProperty("Variant Compare At Price")
 	private final Integer variantCompareAtPrice;
 	@JsonProperty("Variant Requires Shipping")
-	private final boolean variantRequiresShipping;
+	private final Boolean variantRequiresShipping;
 	@JsonProperty("Variant Taxable")
-	private final boolean variantTaxable;
+	private final Boolean variantTaxable;
 	@JsonProperty("Variant Barcode")
 	private final String variantBarcode;
 	@JsonProperty("Image Attachment")
@@ -144,7 +144,7 @@ public final class ProductCsv implements Csv {
 		return publishedScope;
 	}
 
-	public boolean isPublished() {
+	public Boolean getPublished() {
 		return published;
 	}
 
@@ -212,7 +212,7 @@ public final class ProductCsv implements Csv {
 		return variantInventoryTracker;
 	}
 
-	public int getVariantInventoryQty() {
+	public Integer getVariantInventoryQty() {
 		return variantInventoryQty;
 	}
 
@@ -236,11 +236,11 @@ public final class ProductCsv implements Csv {
 		return variantCompareAtPrice;
 	}
 
-	public boolean isVariantRequiresShipping() {
+	public Boolean getVariantRequiresShipping() {
 		return variantRequiresShipping;
 	}
 
-	public boolean isVariantTaxable() {
+	public Boolean getVariantTaxable() {
 		return variantTaxable;
 	}
 
@@ -284,7 +284,7 @@ public final class ProductCsv implements Csv {
 		return getMetafieldNamespace() != null;
 	}
 
-	private ProductCsv(
+	ProductCsv(
 			String handle,
 			String title,
 			String body,
@@ -293,7 +293,7 @@ public final class ProductCsv implements Csv {
 			String tags,
 			String templateSuffix,
 			PublishScope publishedScope,
-			boolean published,
+			Boolean published,
 			ZonedDateTime publishedAt,
 			String option1Name,
 			String option1Value,
@@ -310,14 +310,14 @@ public final class ProductCsv implements Csv {
 			MetafieldValueType metafieldValueType,
 			BigDecimal variantGrams,
 			VariantInventoryTracker variantInventoryTracker,
-			int variantInventoryQty,
+			Integer variantInventoryQty,
 			VariantInventoryPolicy variantInventoryPolicy,
 			String variantInventoryCost,
 			VariantFullfillmentService variantFullfillmentService,
 			BigDecimal variantPrice,
 			Integer variantCompareAtPrice,
-			boolean variantRequiresShipping,
-			boolean variantTaxable,
+			Boolean variantRequiresShipping,
+			Boolean variantTaxable,
 			String variantBarcode,
 			byte[] imageAttachment,
 			String imageSrc,
@@ -369,316 +369,5 @@ public final class ProductCsv implements Csv {
 		this.variantWeight = variantWeight;
 		this.variantWeightUnit = variantWeightUnit;
 		this.variantTaxCode = variantTaxCode;
-	}
-
-	public static class ProductCsvBuilder {
-		private String handle;
-		private String title;
-		private String body;
-		private String vendor;
-		private String type;
-		private String tags = "";
-		private String templateSuffix;
-		private PublishScope publishedScope = PublishScope.GLOBAL;
-		private boolean published = true;
-		private ZonedDateTime publishedAt;
-		private String option1Name;
-		private String option1Value;
-		private String option2Name;
-		private String option2Value;
-		private String option3Name;
-		private String option3Value;
-		private String variantSKU;
-		private String metafieldsGlobalTitleTag;
-		private String metafieldsGlobalDescriptionTag;
-		private String metafieldNamespace;
-		private String metafieldKey;
-		private String metafieldValue;
-		private MetafieldValueType metafieldValueType;
-		private BigDecimal variantGrams;
-		private VariantInventoryTracker variantInventoryTracker;
-		private int variantInventoryQty;
-		private VariantInventoryPolicy variantInventoryPolicy = VariantInventoryPolicy.DENY;
-		private String variantInventoryCost;
-		private VariantFullfillmentService variantFullfillmentService = VariantFullfillmentService.MANUAL;
-		private BigDecimal variantPrice;
-		private Integer variantCompareAtPrice;
-		private boolean variantRequiresShipping = true;
-		private boolean variantTaxable = true;
-		private String variantBarcode;
-		private byte[] imageAttachment;
-		private String imageSrc;
-		private Integer imagePosition;
-		private String imageAltText;
-		private String variantImage;
-		private BigDecimal variantWeight;
-		private VariantWeightUnit variantWeightUnit;
-		private String variantTaxCode;
-
-		private ProductCsvBuilder() {}
-
-		public static ProductCsvBuilder builder() {
-			return new ProductCsvBuilder();
-		}
-
-		public ProductCsvBuilder handle(String handle) {
-			this.handle = handle;
-			return this;
-		}
-
-		public ProductCsvBuilder title(String title) {
-			this.title = title;
-			return this;
-		}
-
-		public ProductCsvBuilder body(String body) {
-			this.body = body;
-			return this;
-		}
-
-		public ProductCsvBuilder vendor(String vendor) {
-			this.vendor = vendor;
-			return this;
-		}
-
-		public ProductCsvBuilder type(String type) {
-			this.type = type;
-			return this;
-		}
-
-		public ProductCsvBuilder tags(String tags) {
-			this.tags = tags;
-			return this;
-		}
-
-		public ProductCsvBuilder templateSuffix(String templateSuffix) {
-			this.templateSuffix = templateSuffix;
-			return this;
-		}
-
-		public ProductCsvBuilder publishedScope(PublishScope publishedScope) {
-			this.publishedScope = publishedScope;
-			return this;
-		}
-
-		public ProductCsvBuilder published(boolean published) {
-			this.published = published;
-			return this;
-		}
-
-		public ProductCsvBuilder publishedAt(ZonedDateTime publishedAt) {
-			this.publishedAt = publishedAt;
-			return this;
-		}
-
-		public ProductCsvBuilder option1Name(String option1Name) {
-			this.option1Name = option1Name;
-			return this;
-		}
-
-		public ProductCsvBuilder option1Value(String option1Value) {
-			this.option1Value = option1Value;
-			return this;
-		}
-
-		public ProductCsvBuilder option2Name(String option2Name) {
-			this.option2Name = option2Name;
-			return this;
-		}
-
-		public ProductCsvBuilder option2Value(String option2Value) {
-			this.option2Value = option2Value;
-			return this;
-		}
-
-		public ProductCsvBuilder option3Name(String option3Name) {
-			this.option3Name = option3Name;
-			return this;
-		}
-
-		public ProductCsvBuilder option3Value(String option3Value) {
-			this.option3Value = option3Value;
-			return this;
-		}
-
-		public ProductCsvBuilder variantSKU(String variantSKU) {
-			this.variantSKU = variantSKU;
-			return this;
-		}
-
-		public ProductCsvBuilder metafieldsGlobalTitleTag(String metafieldsGlobalTitleTag) {
-			this.metafieldsGlobalTitleTag = metafieldsGlobalTitleTag;
-			return this;
-		}
-
-		public ProductCsvBuilder metafieldsGlobalDescriptionTag(String metafieldsGlobalDescriptionTag) {
-			this.metafieldsGlobalDescriptionTag = metafieldsGlobalDescriptionTag;
-			return this;
-		}
-
-		public ProductCsvBuilder metafieldNamespace(String metafieldNamespace) {
-			this.metafieldNamespace = metafieldNamespace;
-			return this;
-		}
-
-		public ProductCsvBuilder metafieldKey(String metafieldKey) {
-			this.metafieldKey = metafieldKey;
-			return this;
-		}
-
-		public ProductCsvBuilder metafieldValue(String metafieldValue) {
-			this.metafieldValue = metafieldValue;
-			return this;
-		}
-
-		public ProductCsvBuilder metafieldValueType(MetafieldValueType metafieldValueType) {
-			this.metafieldValueType = metafieldValueType;
-			return this;
-		}
-
-		public ProductCsvBuilder variantGrams(BigDecimal variantGrams) {
-			this.variantGrams = variantGrams;
-			return this;
-		}
-
-		public ProductCsvBuilder variantInventoryTracker(VariantInventoryTracker variantInventoryTracker) {
-			this.variantInventoryTracker = variantInventoryTracker;
-			return this;
-		}
-
-		public ProductCsvBuilder variantInventoryQty(int variantInventoryQty) {
-			this.variantInventoryQty = variantInventoryQty;
-			return this;
-		}
-
-		public ProductCsvBuilder variantInventoryPolicy(VariantInventoryPolicy variantInventoryPolicy) {
-			this.variantInventoryPolicy = variantInventoryPolicy;
-			return this;
-		}
-
-		public ProductCsvBuilder variantInventoryCost(String variantInventoryCost) {
-			this.variantInventoryCost = variantInventoryCost;
-			return this;
-		}
-
-		public ProductCsvBuilder variantFullfillmentService(VariantFullfillmentService variantFullfillmentService) {
-			this.variantFullfillmentService = variantFullfillmentService;
-			return this;
-		}
-
-		public ProductCsvBuilder variantPrice(BigDecimal variantPrice) {
-			this.variantPrice = variantPrice;
-			return this;
-		}
-
-		public ProductCsvBuilder variantCompareAtPrice(Integer variantCompareAtPrice) {
-			this.variantCompareAtPrice = variantCompareAtPrice;
-			return this;
-		}
-
-		public ProductCsvBuilder variantRequiresShipping(boolean variantRequiresShipping) {
-			this.variantRequiresShipping = variantRequiresShipping;
-			return this;
-		}
-
-		public ProductCsvBuilder variantTaxable(boolean variantTaxable) {
-			this.variantTaxable = variantTaxable;
-			return this;
-		}
-
-		public ProductCsvBuilder variantBarcode(String variantBarcode) {
-			this.variantBarcode = variantBarcode;
-			return this;
-		}
-
-		public ProductCsvBuilder imageAttachment(byte[] imageAttachment) {
-			this.imageAttachment = imageAttachment;
-			return this;
-		}
-
-		public ProductCsvBuilder imageSrc(String imageSrc) {
-			this.imageSrc = imageSrc;
-			return this;
-		}
-
-		public ProductCsvBuilder imagePosition(Integer imagePosition) {
-			this.imagePosition = imagePosition;
-			return this;
-		}
-
-		public ProductCsvBuilder imageAltText(String imageAltText) {
-			this.imageAltText = imageAltText;
-			return this;
-		}
-
-		public ProductCsvBuilder variantImage(String variantImage) {
-			this.variantImage = variantImage;
-			return this;
-		}
-
-		public ProductCsvBuilder variantWeight(BigDecimal variantWeight) {
-			this.variantWeight = variantWeight;
-			return this;
-		}
-
-		public ProductCsvBuilder variantWeightUnit(VariantWeightUnit variantWeightUnit) {
-			this.variantWeightUnit = variantWeightUnit;
-			return this;
-		}
-
-		public ProductCsvBuilder variantTaxCode(String variantTaxCode) {
-			this.variantTaxCode = variantTaxCode;
-			return this;
-		}
-
-		private boolean hasMetafield() {
-			return metafieldKey != null || metafieldValue != null || metafieldValueType != null;
-		}
-
-		public ProductCsv build() {
-			return new ProductCsv(
-					handle,
-					title,
-					body,
-					vendor,
-					type,
-					tags,
-					templateSuffix,
-					publishedScope,
-					published,
-					publishedAt,
-					option1Name,
-					option1Value,
-					option2Name,
-					option2Value,
-					option3Name,
-					option3Value,
-					variantSKU,
-					metafieldsGlobalTitleTag,
-					metafieldsGlobalDescriptionTag,
-					metafieldNamespace == null && hasMetafield() ? "global" : metafieldNamespace,
-					metafieldKey,
-					metafieldValue,
-					metafieldValueType,
-					variantGrams,
-					variantInventoryTracker,
-					variantInventoryQty,
-					variantInventoryPolicy,
-					variantInventoryCost,
-					variantFullfillmentService,
-					variantPrice,
-					variantCompareAtPrice,
-					variantRequiresShipping,
-					variantTaxable,
-					variantBarcode,
-					imageAttachment,
-					imageSrc,
-					imagePosition,
-					imageAltText,
-					variantImage,
-					variantWeight,
-					variantWeightUnit,
-					variantTaxCode);
-		}
 	}
 }

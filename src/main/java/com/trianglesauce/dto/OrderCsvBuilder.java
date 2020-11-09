@@ -3,6 +3,7 @@ package com.trianglesauce.dto;
 import com.trianglesauce.enums.*;
 
 import java.math.BigDecimal;
+import java.net.URL;
 import java.time.ZonedDateTime;
 
 public class OrderCsvBuilder {
@@ -17,7 +18,7 @@ public class OrderCsvBuilder {
 	private String tags;
 	private String note;
 	private String phone;
-	private String referringSite;
+	private URL referringSite;
 	private ZonedDateTime processedAt;
 	private String sourcename;
 	private Integer totalWeight;
@@ -147,7 +148,7 @@ public class OrderCsvBuilder {
 		return this;
 	}
 
-	public OrderCsvBuilder withReferringSite(String referringSite) {
+	public OrderCsvBuilder withReferringSite(URL referringSite) {
 		this.referringSite = referringSite;
 		return this;
 	}

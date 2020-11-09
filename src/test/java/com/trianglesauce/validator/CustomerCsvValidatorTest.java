@@ -1,6 +1,7 @@
 package com.trianglesauce.validator;
 
 import com.trianglesauce.dto.CustomerCsv;
+import com.trianglesauce.dto.CustomerCsvBuilder;
 import com.trianglesauce.enums.MetafieldValueType;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Nested;
@@ -24,24 +25,24 @@ class CustomerCsvValidatorTest {
 
 		@Test
 		void success() {
-			CustomerCsv customerCsv = CustomerCsv.CustomerCsvBuilder.builder()
-					.firstName("Taro")
-					.lastName("Tanaka")
-					.email("test@triangle-sauce.com")
-					.company("build&scrap,inc")
-					.address1("1-11-17 Ebisu")
-					.city("Shibuya Ward")
-					.province("Tokyo")
-					.provinceCode("13")
-					.country("Japan")
-					.countryCode("JP")
-					.zip("150-0022")
-					.phone("1234567")
-					.tags("tag1,tag2,tag3")
-					.note("triangle-sauce")
-					.metafieldKey("test-key")
-					.metafieldValue("test-value")
-					.metafieldValueType(MetafieldValueType.STRING)
+			CustomerCsv customerCsv = new CustomerCsvBuilder()
+					.withFirstName("Taro")
+					.withLastName("Tanaka")
+					.withEmail("test@triangle-sauce.com")
+					.withCompany("build&scrap,inc")
+					.withAddress1("1-11-17 Ebisu")
+					.withCity("Shibuya Ward")
+					.withProvince("Tokyo")
+					.withProvinceCode("13")
+					.withCountry("Japan")
+					.withCountryCode("JP")
+					.withZip("150-0022")
+					.withPhone("1234567")
+					.withTags("tag1,tag2,tag3")
+					.withNote("triangle-sauce")
+					.withMetafieldKey("test-key")
+					.withMetafieldValue("test-value")
+					.withMetafieldValueType(MetafieldValueType.STRING)
 					.build();
 			Assertions.assertThatCode(() -> customerCsvValidator.validate(customerCsv))
 					.doesNotThrowAnyException();
@@ -49,7 +50,7 @@ class CustomerCsvValidatorTest {
 
 		@Test
 		void notContainsUniqueColumn() {
-			CustomerCsv customerCsv = CustomerCsv.CustomerCsvBuilder.builder().build();
+			CustomerCsv customerCsv = new CustomerCsvBuilder().build();
 			Assertions.assertThatThrownBy(() -> customerCsvValidator.validate(customerCsv))
 					.isInstanceOf(IllegalArgumentException.class)
 					.hasMessage("email or phone or name (last name and first name) must not be null.");
@@ -57,7 +58,7 @@ class CustomerCsvValidatorTest {
 
 		@Test
 		void notContainsUniqueColumnWhenOnlyFirstNameNotNull() {
-			CustomerCsv customerCsv = CustomerCsv.CustomerCsvBuilder.builder().firstName("Taro").build();
+			CustomerCsv customerCsv = new CustomerCsvBuilder().withFirstName("Taro").build();
 			Assertions.assertThatThrownBy(() -> customerCsvValidator.validate(customerCsv))
 					.isInstanceOf(IllegalArgumentException.class)
 					.hasMessage("email or phone or name (last name and first name) must not be null.");
@@ -65,7 +66,7 @@ class CustomerCsvValidatorTest {
 
 		@Test
 		void notContainsUniqueColumnWhenOnlyLastNameNotNull() {
-			CustomerCsv customerCsv = CustomerCsv.CustomerCsvBuilder.builder().lastName("Tanaka").build();
+			CustomerCsv customerCsv = new CustomerCsvBuilder().withLastName("Tanaka").build();
 			Assertions.assertThatThrownBy(() -> customerCsvValidator.validate(customerCsv))
 					.isInstanceOf(IllegalArgumentException.class)
 					.hasMessage("email or phone or name (last name and first name) must not be null.");
@@ -73,49 +74,22 @@ class CustomerCsvValidatorTest {
 
 		@Test
 		void invalidEmail() {
-			CustomerCsv customerCsv = CustomerCsv.CustomerCsvBuilder.builder().email("test").build();
+			CustomerCsv customerCsv = new CustomerCsvBuilder().withEmail("test").build();
 			Assertions.assertThatThrownBy(() -> customerCsvValidator.validate(customerCsv))
 					.isInstanceOf(IllegalArgumentException.class)
 					.hasMessage("email is invalid format.");
 		}
 
 		@Test
-		void address1Required() {
-			CustomerCsv customerCsv = CustomerCsv.CustomerCsvBuilder.builder()
-					.firstName("Taro")
-					.lastName("Tanaka")
-					.email("test@triangle-sauce.com")
-					.phone("1234567")
-					.build();
-			Assertions.assertThatThrownBy(() -> customerCsvValidator.validate(customerCsv))
-					.isInstanceOf(IllegalArgumentException.class)
-					.hasMessage("address1 must not be null.");
-		}
-
-		@Test
-		void cityRequired() {
-			CustomerCsv customerCsv = CustomerCsv.CustomerCsvBuilder.builder()
-					.firstName("Taro")
-					.lastName("Tanaka")
-					.email("test@triangle-sauce.com")
-					.phone("1234567")
-					.address1("1-11-17 Ebisu")
-					.build();
-			Assertions.assertThatThrownBy(() -> customerCsvValidator.validate(customerCsv))
-					.isInstanceOf(IllegalArgumentException.class)
-					.hasMessage("city must not be null.");
-		}
-
-		@Test
 		void provinceCodeRequired() {
-			CustomerCsv customerCsv = CustomerCsv.CustomerCsvBuilder.builder()
-					.firstName("Taro")
-					.lastName("Tanaka")
-					.email("test@triangle-sauce.com")
-					.phone("1234567")
-					.address1("1-11-17 Ebisu")
-					.city("Shibuya Ward")
-					.province("Tokyo")
+			CustomerCsv customerCsv = new CustomerCsvBuilder()
+					.withFirstName("Taro")
+					.withLastName("Tanaka")
+					.withEmail("test@triangle-sauce.com")
+					.withPhone("1234567")
+					.withAddress1("1-11-17 Ebisu")
+					.withCity("Shibuya Ward")
+					.withProvince("Tokyo")
 					.build();
 			Assertions.assertThatThrownBy(() -> customerCsvValidator.validate(customerCsv))
 					.isInstanceOf(IllegalArgumentException.class)
@@ -123,34 +97,17 @@ class CustomerCsvValidatorTest {
 		}
 
 		@Test
-		void countryRequired() {
-			CustomerCsv customerCsv = CustomerCsv.CustomerCsvBuilder.builder()
-					.firstName("Taro")
-					.lastName("Tanaka")
-					.email("test@triangle-sauce.com")
-					.phone("1234567")
-					.address1("1-11-17 Ebisu")
-					.city("Shibuya Ward")
-					.province("Tokyo")
-					.provinceCode("13")
-					.build();
-			Assertions.assertThatThrownBy(() -> customerCsvValidator.validate(customerCsv))
-					.isInstanceOf(IllegalArgumentException.class)
-					.hasMessage("country must not be null.");
-		}
-
-		@Test
 		void countryCodeRequired() {
-			CustomerCsv customerCsv = CustomerCsv.CustomerCsvBuilder.builder()
-					.firstName("Taro")
-					.lastName("Tanaka")
-					.email("test@triangle-sauce.com")
-					.phone("1234567")
-					.address1("1-11-17 Ebisu")
-					.city("Shibuya Ward")
-					.province("Tokyo")
-					.provinceCode("13")
-					.country("Japan")
+			CustomerCsv customerCsv = new CustomerCsvBuilder()
+					.withFirstName("Taro")
+					.withLastName("Tanaka")
+					.withEmail("test@triangle-sauce.com")
+					.withPhone("1234567")
+					.withAddress1("1-11-17 Ebisu")
+					.withCity("Shibuya Ward")
+					.withProvince("Tokyo")
+					.withProvinceCode("13")
+					.withCountry("Japan")
 					.build();
 			Assertions.assertThatThrownBy(() -> customerCsvValidator.validate(customerCsv))
 					.isInstanceOf(IllegalArgumentException.class)
@@ -159,17 +116,17 @@ class CustomerCsvValidatorTest {
 
 		@Test
 		void invalidCountryCode() {
-			CustomerCsv customerCsv = CustomerCsv.CustomerCsvBuilder.builder()
-					.firstName("Taro")
-					.lastName("Tanaka")
-					.email("test@triangle-sauce.com")
-					.phone("1234567")
-					.address1("1-11-17 Ebisu")
-					.city("Shibuya Ward")
-					.province("Tokyo")
-					.provinceCode("13")
-					.country("Japan")
-					.countryCode("AAAAA")
+			CustomerCsv customerCsv = new CustomerCsvBuilder()
+					.withFirstName("Taro")
+					.withLastName("Tanaka")
+					.withEmail("test@triangle-sauce.com")
+					.withPhone("1234567")
+					.withAddress1("1-11-17 Ebisu")
+					.withCity("Shibuya Ward")
+					.withProvince("Tokyo")
+					.withProvinceCode("13")
+					.withCountry("Japan")
+					.withCountryCode("AAAAA")
 					.build();
 			Assertions.assertThatThrownBy(() -> customerCsvValidator.validate(customerCsv))
 					.isInstanceOf(IllegalArgumentException.class)
@@ -182,18 +139,18 @@ class CustomerCsvValidatorTest {
 					.boxed()
 					.map(Object::toString)
 					.collect(Collectors.joining());
-			CustomerCsv customerCsv = CustomerCsv.CustomerCsvBuilder.builder()
-					.firstName("Taro")
-					.lastName("Tanaka")
-					.email("test@triangle-sauce.com")
-					.phone("1234567")
-					.address1("1-11-17 Ebisu")
-					.city("Shibuya Ward")
-					.province("Tokyo")
-					.provinceCode("13")
-					.country("Japan")
-					.countryCode("JP")
-					.tags(tags)
+			CustomerCsv customerCsv = new CustomerCsvBuilder()
+					.withFirstName("Taro")
+					.withLastName("Tanaka")
+					.withEmail("test@triangle-sauce.com")
+					.withPhone("1234567")
+					.withAddress1("1-11-17 Ebisu")
+					.withCity("Shibuya Ward")
+					.withProvince("Tokyo")
+					.withProvinceCode("13")
+					.withCountry("Japan")
+					.withCountryCode("JP")
+					.withTags(tags)
 					.build();
 			Assertions.assertThatThrownBy(() -> customerCsvValidator.validate(customerCsv))
 					.isInstanceOf(IllegalArgumentException.class)
@@ -206,19 +163,19 @@ class CustomerCsvValidatorTest {
 					.boxed()
 					.map(Object::toString)
 					.collect(Collectors.joining());
-			CustomerCsv customerCsv = CustomerCsv.CustomerCsvBuilder.builder()
-					.firstName("Taro")
-					.lastName("Tanaka")
-					.email("test@triangle-sauce.com")
-					.phone("1234567")
-					.address1("1-11-17 Ebisu")
-					.city("Shibuya Ward")
-					.province("Tokyo")
-					.provinceCode("13")
-					.country("Japan")
-					.countryCode("JP")
-					.tags("tag1,tag2,tag3")
-					.metafieldKey(metafieldKey)
+			CustomerCsv customerCsv = new CustomerCsvBuilder()
+					.withFirstName("Taro")
+					.withLastName("Tanaka")
+					.withEmail("test@triangle-sauce.com")
+					.withPhone("1234567")
+					.withAddress1("1-11-17 Ebisu")
+					.withCity("Shibuya Ward")
+					.withProvince("Tokyo")
+					.withProvinceCode("13")
+					.withCountry("Japan")
+					.withCountryCode("JP")
+					.withTags("tag1,tag2,tag3")
+					.withMetafieldKey(metafieldKey)
 					.build();
 			Assertions.assertThatThrownBy(() -> customerCsvValidator.validate(customerCsv))
 					.isInstanceOf(IllegalArgumentException.class)
@@ -227,19 +184,19 @@ class CustomerCsvValidatorTest {
 
 		@Test
 		void metafieldValueRequired() {
-			CustomerCsv customerCsv = CustomerCsv.CustomerCsvBuilder.builder()
-					.firstName("Taro")
-					.lastName("Tanaka")
-					.email("test@triangle-sauce.com")
-					.phone("1234567")
-					.address1("1-11-17 Ebisu")
-					.city("Shibuya Ward")
-					.province("Tokyo")
-					.provinceCode("13")
-					.country("Japan")
-					.countryCode("JP")
-					.tags("tag1,tag2,tag3")
-					.metafieldKey("key")
+			CustomerCsv customerCsv = new CustomerCsvBuilder()
+					.withFirstName("Taro")
+					.withLastName("Tanaka")
+					.withEmail("test@triangle-sauce.com")
+					.withPhone("1234567")
+					.withAddress1("1-11-17 Ebisu")
+					.withCity("Shibuya Ward")
+					.withProvince("Tokyo")
+					.withProvinceCode("13")
+					.withCountry("Japan")
+					.withCountryCode("JP")
+					.withTags("tag1,tag2,tag3")
+					.withMetafieldKey("key")
 					.build();
 			Assertions.assertThatThrownBy(() -> customerCsvValidator.validate(customerCsv))
 					.isInstanceOf(IllegalArgumentException.class)
@@ -248,20 +205,20 @@ class CustomerCsvValidatorTest {
 
 		@Test
 		void metafieldValueTypeRequired() {
-			CustomerCsv customerCsv = CustomerCsv.CustomerCsvBuilder.builder()
-					.firstName("Taro")
-					.lastName("Tanaka")
-					.email("test@triangle-sauce.com")
-					.phone("1234567")
-					.address1("1-11-17 Ebisu")
-					.city("Shibuya Ward")
-					.province("Tokyo")
-					.provinceCode("13")
-					.country("Japan")
-					.countryCode("JP")
-					.tags("tag1,tag2,tag3")
-					.metafieldKey("key")
-					.metafieldValue("value")
+			CustomerCsv customerCsv = new CustomerCsvBuilder()
+					.withFirstName("Taro")
+					.withLastName("Tanaka")
+					.withEmail("test@triangle-sauce.com")
+					.withPhone("1234567")
+					.withAddress1("1-11-17 Ebisu")
+					.withCity("Shibuya Ward")
+					.withProvince("Tokyo")
+					.withProvinceCode("13")
+					.withCountry("Japan")
+					.withCountryCode("JP")
+					.withTags("tag1,tag2,tag3")
+					.withMetafieldKey("key")
+					.withMetafieldValue("value")
 					.build();
 			Assertions.assertThatThrownBy(() -> customerCsvValidator.validate(customerCsv))
 					.isInstanceOf(IllegalArgumentException.class)
@@ -270,22 +227,22 @@ class CustomerCsvValidatorTest {
 
 		@Test
 		void metafieldNamespaceOverlimit() {
-			CustomerCsv customerCsv = CustomerCsv.CustomerCsvBuilder.builder()
-					.firstName("Taro")
-					.lastName("Tanaka")
-					.email("test@triangle-sauce.com")
-					.phone("1234567")
-					.address1("1-11-17 Ebisu")
-					.city("Shibuya Ward")
-					.province("Tokyo")
-					.provinceCode("13")
-					.country("Japan")
-					.countryCode("JP")
-					.tags("tag1,tag2,tag3")
-					.metafieldKey("key")
-					.metafieldValue("value")
-					.metafieldValueType(MetafieldValueType.STRING)
-					.metafieldNamespace("AAAAAAAAAAAAAAAAAAAAA")
+			CustomerCsv customerCsv = new CustomerCsvBuilder()
+					.withFirstName("Taro")
+					.withLastName("Tanaka")
+					.withEmail("test@triangle-sauce.com")
+					.withPhone("1234567")
+					.withAddress1("1-11-17 Ebisu")
+					.withCity("Shibuya Ward")
+					.withProvince("Tokyo")
+					.withProvinceCode("13")
+					.withCountry("Japan")
+					.withCountryCode("JP")
+					.withTags("tag1,tag2,tag3")
+					.withMetafieldKey("key")
+					.withMetafieldValue("value")
+					.withMetafieldValueType(MetafieldValueType.STRING)
+					.withMetafieldNamespace("AAAAAAAAAAAAAAAAAAAAA")
 					.build();
 			Assertions.assertThatThrownBy(() -> customerCsvValidator.validate(customerCsv))
 					.isInstanceOf(IllegalArgumentException.class)
