@@ -97,5 +97,9 @@ public class ProductCsvValidator implements CsvValidator<ProductCsv> {
 		if (productCsv.getVariantGrams() != null && productCsv.getVariantWeightUnit() != null) {
 			throw new IllegalArgumentException("Both variant grams and variant weight unit cannot be specified.");
 		}
+
+		if (productCsv.getVariantInventoryQty() != null) {
+			Assert.positive(productCsv.getVariantInventoryQty(), "variant inventory qty must be a positive number.");
+		}
 	}
 }
