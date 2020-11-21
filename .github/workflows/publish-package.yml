@@ -14,6 +14,6 @@ jobs:
         with:
           java-version: 11
       - name: Deoloy package
-        run: mvn -B deploy
+        run: ./mvnw -B deploy
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
