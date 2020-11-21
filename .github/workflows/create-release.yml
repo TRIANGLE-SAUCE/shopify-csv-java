@@ -1,0 +1,37 @@
+name: Create release
+on:
+  workflow_dispatch:
+    inputs:
+      version:
+        description: 'Release version. ex)1.0.0, 1.0.0-SNAPSHOT'
+        required: true
+env:
+  TAG_NAME: v${{ github.event.inputs.version }}
+jobs:
+  create_tag:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Git config
+        run: |
+          git config --local user.name github-actions
+          git config --local user.email ${{ secrets.EMAIL }}
+      - name: Create tag
+        run: |
+          git tag ${TAG_NAME}
+          git push origin ${TAG_NAME}
+  create_release:
+    needs: create_tag
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Create release
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          release_name: ${{ env.TAG_NAME }}
+          tag_name: ${{ env.TAG_NAME }}
+          draft: false
