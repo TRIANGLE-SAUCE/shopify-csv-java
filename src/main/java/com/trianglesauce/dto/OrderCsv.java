@@ -155,7 +155,7 @@ public final class OrderCsv implements Csv {
 	private final String tax2Title;
 	@JsonProperty("Tax 2 Price")
 	private final BigDecimal tax2Price;
-	@JsonProperty("Tax 3 Rate")
+	@JsonProperty("Tax 2 Rate")
 	private final String tax2Rate;
 	@JsonProperty("Tax 3 Title")
 	private final String tax3Title;
