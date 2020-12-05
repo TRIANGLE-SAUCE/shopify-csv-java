@@ -15,6 +15,7 @@ public class OrderCsvBuilder {
 	private BuyerAcceptsMarketing buyerAcceptsMarketing;
 	private CancelReason cancelReason;
 	private ZonedDateTime cancelledAt;
+	private ZonedDateTime closedAt;
 	private String tags;
 	private String note;
 	private String phone;
@@ -130,6 +131,11 @@ public class OrderCsvBuilder {
 
 	public OrderCsvBuilder withCancelledAt(ZonedDateTime cancelledAt) {
 		this.cancelledAt = cancelledAt;
+		return this;
+	}
+
+	public OrderCsvBuilder withClosedAt(ZonedDateTime closedAt) {
+		this.closedAt = closedAt;
 		return this;
 	}
 
@@ -528,6 +534,7 @@ public class OrderCsvBuilder {
 				buyerAcceptsMarketing,
 				cancelReason,
 				cancelledAt,
+				closedAt,
 				tags,
 				note,
 				phone,
