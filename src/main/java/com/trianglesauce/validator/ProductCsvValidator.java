@@ -1,7 +1,7 @@
 package com.trianglesauce.validator;
 
 import com.trianglesauce.dto.ProductCsv;
-import com.trianglesauce.enums.VariantFullfillmentService;
+import com.trianglesauce.enums.VariantFulfillmentService;
 import com.trianglesauce.util.Assert;
 
 public class ProductCsvValidator implements CsvValidator<ProductCsv> {
@@ -84,10 +84,10 @@ public class ProductCsvValidator implements CsvValidator<ProductCsv> {
 	}
 
 	private void validateVariant(ProductCsv productCsv) {
-		if (productCsv.getVariantFullfillmentService() == VariantFullfillmentService.HANDLE_OF_THE_FULFILLMENT_SERVICE) {
-			Assert.notNull(productCsv.getVariantSKU(), "variant sku must be specified when variant fullfillment service is handle of the fullfillment service.");
+		if (productCsv.getVariantFulfillmentService() == VariantFulfillmentService.HANDLE_OF_THE_FULFILLMENT_SERVICE) {
+			Assert.notNull(productCsv.getVariantSKU(), "variant sku must be specified when variant fulfillment service is handle of the fulfillment service.");
 		} else if (productCsv.getVariantSKU() != null){
-			throw new IllegalArgumentException("variant fullfillment service must be handle of the fullfillment service when variant sku is specified.");
+			throw new IllegalArgumentException("variant fulfillment service must be handle of the fulfillment service when variant sku is specified.");
 		}
 
 		if (productCsv.getVariantGrams() != null && productCsv.getVariantWeight() != null) {

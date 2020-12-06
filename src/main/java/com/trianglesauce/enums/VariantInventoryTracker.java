@@ -4,7 +4,7 @@ import com.fasterxml.jackson.annotation.JsonValue;
 
 public enum VariantInventoryTracker {
 	SHOPIFY("Shopify"),
-	FULLFILLMENT_SERVICE_HANDLE("fullfillment-service-handle");
+	FULFILLMENT_SERVICE_HANDLE("fulfillment-service-handle");
 
 	private final String code;
 

@@ -82,7 +82,7 @@ public class OrderCsvBuilder {
 	private String shippingLineSource;
 	private String shippingLineTitle;
 	private String shippingLineCarrierIdentifier;
-	private String shippingLineRequestedFullfillmentServiceId;
+	private String shippingLineRequestedFulfillmentServiceId;
 	private String shippingTax1Title;
 	private BigDecimal shippingTax1Rate;
 	private BigDecimal shippingTaxPrice;
@@ -469,8 +469,8 @@ public class OrderCsvBuilder {
 		return this;
 	}
 
-	public OrderCsvBuilder withShippingLineRequestedFullfillmentServiceId(String shippingLineRequestedFullfillmentServiceId) {
-		this.shippingLineRequestedFullfillmentServiceId = shippingLineRequestedFullfillmentServiceId;
+	public OrderCsvBuilder withShippingLineRequestedFulfillmentServiceId(String shippingLineRequestedFulfillmentServiceId) {
+		this.shippingLineRequestedFulfillmentServiceId = shippingLineRequestedFulfillmentServiceId;
 		return this;
 	}
 
@@ -601,7 +601,7 @@ public class OrderCsvBuilder {
 				shippingLineSource,
 				shippingLineTitle,
 				shippingLineCarrierIdentifier,
-				shippingLineRequestedFullfillmentServiceId,
+				shippingLineRequestedFulfillmentServiceId,
 				shippingTax1Title,
 				shippingTax1Rate,
 				shippingTaxPrice,

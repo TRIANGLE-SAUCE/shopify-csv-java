@@ -34,7 +34,7 @@ public class ProductCsvBuilder {
     private Integer variantInventoryQty;
     private VariantInventoryPolicy variantInventoryPolicy;
     private String variantInventoryCost;
-    private VariantFullfillmentService variantFullfillmentService;
+    private VariantFulfillmentService variantFulfillmentService;
     private BigDecimal variantPrice;
     private Integer variantCompareAtPrice;
     private Boolean variantRequiresShipping;
@@ -189,8 +189,8 @@ public class ProductCsvBuilder {
         return this;
     }
 
-    public ProductCsvBuilder withVariantFullfillmentService(VariantFullfillmentService variantFullfillmentService) {
-        this.variantFullfillmentService = variantFullfillmentService;
+    public ProductCsvBuilder withVariantFulfillmentService(VariantFulfillmentService variantFulfillmentService) {
+        this.variantFulfillmentService = variantFulfillmentService;
         return this;
     }
 
@@ -289,7 +289,7 @@ public class ProductCsvBuilder {
                 variantInventoryQty,
                 variantInventoryPolicy,
                 variantInventoryCost,
-                variantFullfillmentService,
+                variantFulfillmentService,
                 variantPrice,
                 variantCompareAtPrice,
                 variantRequiresShipping,

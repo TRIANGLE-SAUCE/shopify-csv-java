@@ -48,7 +48,7 @@ class ProductCsvTest {
 						ProductCsv::getVariantSKU,
 						ProductCsv::getMetafieldNamespace,
 						ProductCsv::getVariantInventoryPolicy,
-						ProductCsv::getVariantFullfillmentService,
+						ProductCsv::getVariantFulfillmentService,
 						ProductCsv::getVariantRequiresShipping,
 						ProductCsv::getVariantTaxable,
 						ProductCsv::getVariantWeight)

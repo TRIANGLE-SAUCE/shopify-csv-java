@@ -5,7 +5,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.trianglesauce.enums.MetafieldValueType;
 import com.trianglesauce.enums.PublishScope;
-import com.trianglesauce.enums.VariantFullfillmentService;
+import com.trianglesauce.enums.VariantFulfillmentService;
 import com.trianglesauce.enums.VariantInventoryPolicy;
 import com.trianglesauce.enums.VariantInventoryTracker;
 import com.trianglesauce.enums.VariantWeightUnit;
@@ -20,7 +20,7 @@ import java.time.ZonedDateTime;
 		"Option3 Name", "Option3 Value", "Variant SKU", "Metafields Global Title Tag",
 		"Metafields Global Description Tag", "Metafield Namespace", "Metafield Key", "Metafield Value",
 		"Metafield Value Type", "Variant Grams", "Variant Inventory Trackers", "Variant Inventory Qty",
-		"Variant Inventory Policy", "Variant Inventory Cost", "Variant Fullfillment Service",
+		"Variant Inventory Policy", "Variant Inventory Cost", "Variant Fulfillment Service",
 		"Variant Price", "Variant Compare At Price", "Variant Requires Shipping", "Variant Taxable",
 		"Variant Barcode", "Image Attachment", "Image Src", "Image Position", "Image Alt Text",
 		"Variant Image", "Variant Weight", "Variant Weight Unit", "Variant Tax Code",
@@ -83,8 +83,8 @@ public final class ProductCsv implements Csv {
 	private final VariantInventoryPolicy variantInventoryPolicy;
 	@JsonProperty("Variant Inventory Cost")
 	private final String variantInventoryCost;
-	@JsonProperty("Variant Fullfillment Service")
-	private final VariantFullfillmentService variantFullfillmentService;
+	@JsonProperty("Variant Fulfillment Service")
+	private final VariantFulfillmentService variantFulfillmentService;
 	@JsonProperty("Variant Price")
 	private final BigDecimal variantPrice;
 	@JsonProperty("Variant Compare At Price")
@@ -224,8 +224,8 @@ public final class ProductCsv implements Csv {
 		return variantInventoryCost;
 	}
 
-	public VariantFullfillmentService getVariantFullfillmentService() {
-		return variantFullfillmentService;
+	public VariantFulfillmentService getVariantFulfillmentService() {
+		return variantFulfillmentService;
 	}
 
 	public BigDecimal getVariantPrice() {
@@ -313,7 +313,7 @@ public final class ProductCsv implements Csv {
 			Integer variantInventoryQty,
 			VariantInventoryPolicy variantInventoryPolicy,
 			String variantInventoryCost,
-			VariantFullfillmentService variantFullfillmentService,
+			VariantFulfillmentService variantFulfillmentService,
 			BigDecimal variantPrice,
 			Integer variantCompareAtPrice,
 			Boolean variantRequiresShipping,
@@ -355,7 +355,7 @@ public final class ProductCsv implements Csv {
 		this.variantInventoryQty = variantInventoryQty;
 		this.variantInventoryPolicy = variantInventoryPolicy;
 		this.variantInventoryCost = variantInventoryCost;
-		this.variantFullfillmentService = variantFullfillmentService;
+		this.variantFulfillmentService = variantFulfillmentService;
 		this.variantPrice = variantPrice;
 		this.variantCompareAtPrice = variantCompareAtPrice;
 		this.variantRequiresShipping = variantRequiresShipping;

@@ -10,7 +10,7 @@ import java.net.URL;
 import java.time.ZonedDateTime;
 
 @JsonPropertyOrder({
-		"Name", "Email", "Financial Status", "Fullfillment Status", "Currency",
+		"Name", "Email", "Financial Status", "Fulfillment Status", "Currency",
 		"Buyer Accepts Marketing", "Cancel Reason", "Cancelled At", "Closed At", "Tags",
 		"Note", "Phone", "Referring Site", "Processed At", "Source name",
 		"Total weight", "Total Tax", "Shipping Company", "Shipping Name",
@@ -24,14 +24,14 @@ import java.time.ZonedDateTime;
 		"Billing Country", "Billing Country Code", "Lineitem name",
 		"Lineitem variant id", "Lineitem quantity", "Lineitem price",
 		"Lineitem variant title", "Lineitem compare at price", "Lineitem sku",
-		"Lineitem requires shipping", "Lineitem taxable", "Lineitem fullfillment status",
+		"Lineitem requires shipping", "Lineitem taxable", "Lineitem fulfillment status",
 		"Taxes Included", "Tax 1 Title", "Tax 1 Price", "Tax 1 Rate",
 		"Tax 2 Title", "Tax 2 Price", "Tax 3 Rate", "Tax 3 Title", "Tax 3 Price",
 		"Tax 3 Rate", "Transaction Amount", "Transaction Kind", "Transaction Status",
 		"Transaction Processed At", "Transaction Gateway", "Transaction Localtion Id",
 		"Transaction Source Name", "Shipping Line Code", "Shipping Line Price",
 		"Shipping Line Source", "Shipping Line Title", "Shipping Line Carrier Identifier",
-		"Shipping Line Requested Fullfillment Service Id", "Shipping Tax 1 Title",
+		"Shipping Line Requested Fulfillment Service Id", "Shipping Tax 1 Title",
 		"Shipping Tax 1 Rate", "Shipping Tax 1 Price", "Discount Code",
 		"Discount Amount", "Discount Type", "Metafield Namespace", "Metafield Key",
 		"Metafield Value", "Metafield Value Type"
@@ -43,7 +43,7 @@ public final class OrderCsv implements Csv {
 	private final String email;
 	@JsonProperty("Financial Status")
 	private final FinancialStatus financialStatus;
-	@JsonProperty("Fullfillment Status")
+	@JsonProperty("Fulfillment Status")
 	private final FulfillmentStatus fulfillmentStatus;
 	@JsonProperty("Currency")
 	private final String currency;
@@ -144,7 +144,7 @@ public final class OrderCsv implements Csv {
 	private final Boolean lineitemRequiresShipping;
 	@JsonProperty("Lineitem taxable")
 	private final Boolean lineitemTaxable;;
-	@JsonProperty("Lineitem fullfillment status")
+	@JsonProperty("Lineitem fulfillment status")
 	private final LineitemFulfillmentStatus lineitemFulfillmentStatus;
 	@JsonProperty("Taxes Included")
 	private final boolean taxesIncluded;
@@ -191,8 +191,8 @@ public final class OrderCsv implements Csv {
 	private final String shippingLineTitle;
 	@JsonProperty("Shipping Line Carrier Identifier")
 	private final String shippingLineCarrierIdentifier;
-	@JsonProperty("Shipping Line Requested Fullfillment Service Id")
-	private final String shippingLineRequestedFullfillmentServiceId;
+	@JsonProperty("Shipping Line Requested Fulfillment Service Id")
+	private final String shippingLineRequestedFulfillmentServiceId;
 	@JsonProperty("Shipping Tax 1 Title")
 	private final String shippingTax1Title;
 	@JsonProperty("Shipping Tax 1 Rate")
@@ -214,7 +214,7 @@ public final class OrderCsv implements Csv {
 	@JsonProperty("Metafield Value Type")
 	private final String metafieldValueType;
 
-	OrderCsv(String name, String email, FinancialStatus financialStatus, FulfillmentStatus fulfillmentStatus, String currency, BuyerAcceptsMarketing buyerAcceptsMarketing, CancelReason cancelReason, ZonedDateTime cancelledAt, ZonedDateTime closedAt, String tags, String note, String phone, URL referringSite, ZonedDateTime processedAt, String sourcename, Integer totalWeight, BigDecimal totalTax, String shippingCompany, String shippingName, String shippingPhone, String shippingFirstName, String shippingLastName, String shippingAddress1, String shippingAddress2, String shippingCity, String shippingProvince, String shippingProvinceCode, String shippingZip, String shippingCountry, String shippingCountyCode, String billingCompany, String billingName, String billingPhone, String billingFirstName, String billingLastName, String billingAddress1, String billingAddress2, String billingCity, String billingProvince, String billingProvinceCode, String billingZip, String billingCountry, String billingCountryCode, String lineitemName, String lineitemVariantId, Integer lineitemQuantity, String lineitemPrice, String lineitemVariantTitle, String lineitemCompareAtPrice, String lineitemSku, Boolean lineitemRequiresShipping, Boolean lineitemTaxable, LineitemFulfillmentStatus lineitemFulfillmentStatus, boolean taxesIncluded, String tax1Title, BigDecimal tax1Price, String tax1Rate, String tax2Title, BigDecimal tax2Price, String tax2Rate, String tax3Title, BigDecimal tax3Price, String tax3Rate, BigDecimal transactionAmount, TransactionKind transactionKind, TransactionStatus transactionStatus, String transactionProcessedAt, String transactionGateway, String transactionLocationId, String transactionSourceName, String shippingLineCode, String shippingLinePrice, String shippingLineSource, String shippingLineTitle, String shippingLineCarrierIdentifier, String shippingLineRequestedFullfillmentServiceId, String shippingTax1Title, BigDecimal shippingTax1Rate, BigDecimal shippingTaxPrice, String discountCode, String discountAmount, DiscountType discountType, String metafieldNamespace, String metafieldKey, String metafieldValue, String metafieldValueType) {
+	OrderCsv(String name, String email, FinancialStatus financialStatus, FulfillmentStatus fulfillmentStatus, String currency, BuyerAcceptsMarketing buyerAcceptsMarketing, CancelReason cancelReason, ZonedDateTime cancelledAt, ZonedDateTime closedAt, String tags, String note, String phone, URL referringSite, ZonedDateTime processedAt, String sourcename, Integer totalWeight, BigDecimal totalTax, String shippingCompany, String shippingName, String shippingPhone, String shippingFirstName, String shippingLastName, String shippingAddress1, String shippingAddress2, String shippingCity, String shippingProvince, String shippingProvinceCode, String shippingZip, String shippingCountry, String shippingCountyCode, String billingCompany, String billingName, String billingPhone, String billingFirstName, String billingLastName, String billingAddress1, String billingAddress2, String billingCity, String billingProvince, String billingProvinceCode, String billingZip, String billingCountry, String billingCountryCode, String lineitemName, String lineitemVariantId, Integer lineitemQuantity, String lineitemPrice, String lineitemVariantTitle, String lineitemCompareAtPrice, String lineitemSku, Boolean lineitemRequiresShipping, Boolean lineitemTaxable, LineitemFulfillmentStatus lineitemFulfillmentStatus, boolean taxesIncluded, String tax1Title, BigDecimal tax1Price, String tax1Rate, String tax2Title, BigDecimal tax2Price, String tax2Rate, String tax3Title, BigDecimal tax3Price, String tax3Rate, BigDecimal transactionAmount, TransactionKind transactionKind, TransactionStatus transactionStatus, String transactionProcessedAt, String transactionGateway, String transactionLocationId, String transactionSourceName, String shippingLineCode, String shippingLinePrice, String shippingLineSource, String shippingLineTitle, String shippingLineCarrierIdentifier, String shippingLineRequestedFulfillmentServiceId, String shippingTax1Title, BigDecimal shippingTax1Rate, BigDecimal shippingTaxPrice, String discountCode, String discountAmount, DiscountType discountType, String metafieldNamespace, String metafieldKey, String metafieldValue, String metafieldValueType) {
 		this.name = name;
 		this.email = email;
 		this.financialStatus = financialStatus;
@@ -290,7 +290,7 @@ public final class OrderCsv implements Csv {
 		this.shippingLineSource = shippingLineSource;
 		this.shippingLineTitle = shippingLineTitle;
 		this.shippingLineCarrierIdentifier = shippingLineCarrierIdentifier;
-		this.shippingLineRequestedFullfillmentServiceId = shippingLineRequestedFullfillmentServiceId;
+		this.shippingLineRequestedFulfillmentServiceId = shippingLineRequestedFulfillmentServiceId;
 		this.shippingTax1Title = shippingTax1Title;
 		this.shippingTax1Rate = shippingTax1Rate;
 		this.shippingTaxPrice = shippingTaxPrice;
@@ -603,8 +603,8 @@ public final class OrderCsv implements Csv {
 		return shippingLineCarrierIdentifier;
 	}
 
-	public String getShippingLineRequestedFullfillmentServiceId() {
-		return shippingLineRequestedFullfillmentServiceId;
+	public String getShippingLineRequestedFulfillmentServiceId() {
+		return shippingLineRequestedFulfillmentServiceId;
 	}
 
 	public String getShippingTax1Title() {

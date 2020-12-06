@@ -3,7 +3,7 @@ package com.trianglesauce.validator;
 import com.trianglesauce.dto.ProductCsv;
 import com.trianglesauce.dto.ProductCsvBuilder;
 import com.trianglesauce.enums.MetafieldValueType;
-import com.trianglesauce.enums.VariantFullfillmentService;
+import com.trianglesauce.enums.VariantFulfillmentService;
 import com.trianglesauce.enums.VariantWeightUnit;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Nested;
@@ -43,7 +43,7 @@ class ProductCsvValidatorTest {
 					.withOption3Name("Material")
 					.withOption3Value("wool")
 					.withVariantSKU("IPOD2008PINK")
-					.withVariantFullfillmentService(VariantFullfillmentService.HANDLE_OF_THE_FULFILLMENT_SERVICE)
+					.withVariantFulfillmentService(VariantFulfillmentService.HANDLE_OF_THE_FULFILLMENT_SERVICE)
 					.withMetafieldKey("test-key")
 					.withMetafieldValue("test-value")
 					.withMetafieldValueType(MetafieldValueType.STRING)
