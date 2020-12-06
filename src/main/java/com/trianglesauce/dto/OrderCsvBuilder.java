@@ -59,7 +59,7 @@ public class OrderCsvBuilder {
 	private String lineitemSku;
 	private Boolean lineitemRequiresShipping;
 	private Boolean lineitemTaxable;
-	private String lineitemFullfillmentStatus;
+	private LineitemFulfillmentStatus lineitemFulfillmentStatus;
 	private boolean taxesIncluded;
 	private String tax1Title;
 	private BigDecimal tax1Price;
@@ -354,8 +354,8 @@ public class OrderCsvBuilder {
 		return this;
 	}
 
-	public OrderCsvBuilder withLineitemFullfillmentStatus(String lineitemFullfillmentStatus) {
-		this.lineitemFullfillmentStatus = lineitemFullfillmentStatus;
+	public OrderCsvBuilder withLineitemFulfillmentStatus(LineitemFulfillmentStatus lineitemFulfillmentStatus) {
+		this.lineitemFulfillmentStatus = lineitemFulfillmentStatus;
 		return this;
 	}
 
@@ -578,7 +578,7 @@ public class OrderCsvBuilder {
 				lineitemSku,
 				lineitemRequiresShipping,
 				lineitemTaxable,
-				lineitemFullfillmentStatus,
+				lineitemFulfillmentStatus,
 				taxesIncluded,
 				tax1Title,
 				tax1Price,

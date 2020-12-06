@@ -145,7 +145,7 @@ public final class OrderCsv implements Csv {
 	@JsonProperty("Lineitem taxable")
 	private final Boolean lineitemTaxable;;
 	@JsonProperty("Lineitem fullfillment status")
-	private final String lineitemFullfillmentStatus;
+	private final LineitemFulfillmentStatus lineitemFulfillmentStatus;
 	@JsonProperty("Taxes Included")
 	private final boolean taxesIncluded;
 	@JsonProperty("Tax 1 Title")
@@ -214,7 +214,7 @@ public final class OrderCsv implements Csv {
 	@JsonProperty("Metafield Value Type")
 	private final String metafieldValueType;
 
-	OrderCsv(String name, String email, FinancialStatus financialStatus, FulfillmentStatus fulfillmentStatus, String currency, BuyerAcceptsMarketing buyerAcceptsMarketing, CancelReason cancelReason, ZonedDateTime cancelledAt, ZonedDateTime closedAt, String tags, String note, String phone, URL referringSite, ZonedDateTime processedAt, String sourcename, Integer totalWeight, BigDecimal totalTax, String shippingCompany, String shippingName, String shippingPhone, String shippingFirstName, String shippingLastName, String shippingAddress1, String shippingAddress2, String shippingCity, String shippingProvince, String shippingProvinceCode, String shippingZip, String shippingCountry, String shippingCountyCode, String billingCompany, String billingName, String billingPhone, String billingFirstName, String billingLastName, String billingAddress1, String billingAddress2, String billingCity, String billingProvince, String billingProvinceCode, String billingZip, String billingCountry, String billingCountryCode, String lineitemName, String lineitemVariantId, Integer lineitemQuantity, String lineitemPrice, String lineitemVariantTitle, String lineitemCompareAtPrice, String lineitemSku, Boolean lineitemRequiresShipping, Boolean lineitemTaxable, String lineitemFullfillmentStatus, boolean taxesIncluded, String tax1Title, BigDecimal tax1Price, String tax1Rate, String tax2Title, BigDecimal tax2Price, String tax2Rate, String tax3Title, BigDecimal tax3Price, String tax3Rate, BigDecimal transactionAmount, TransactionKind transactionKind, TransactionStatus transactionStatus, String transactionProcessedAt, String transactionGateway, String transactionLocationId, String transactionSourceName, String shippingLineCode, String shippingLinePrice, String shippingLineSource, String shippingLineTitle, String shippingLineCarrierIdentifier, String shippingLineRequestedFullfillmentServiceId, String shippingTax1Title, BigDecimal shippingTax1Rate, BigDecimal shippingTaxPrice, String discountCode, String discountAmount, DiscountType discountType, String metafieldNamespace, String metafieldKey, String metafieldValue, String metafieldValueType) {
+	OrderCsv(String name, String email, FinancialStatus financialStatus, FulfillmentStatus fulfillmentStatus, String currency, BuyerAcceptsMarketing buyerAcceptsMarketing, CancelReason cancelReason, ZonedDateTime cancelledAt, ZonedDateTime closedAt, String tags, String note, String phone, URL referringSite, ZonedDateTime processedAt, String sourcename, Integer totalWeight, BigDecimal totalTax, String shippingCompany, String shippingName, String shippingPhone, String shippingFirstName, String shippingLastName, String shippingAddress1, String shippingAddress2, String shippingCity, String shippingProvince, String shippingProvinceCode, String shippingZip, String shippingCountry, String shippingCountyCode, String billingCompany, String billingName, String billingPhone, String billingFirstName, String billingLastName, String billingAddress1, String billingAddress2, String billingCity, String billingProvince, String billingProvinceCode, String billingZip, String billingCountry, String billingCountryCode, String lineitemName, String lineitemVariantId, Integer lineitemQuantity, String lineitemPrice, String lineitemVariantTitle, String lineitemCompareAtPrice, String lineitemSku, Boolean lineitemRequiresShipping, Boolean lineitemTaxable, LineitemFulfillmentStatus lineitemFulfillmentStatus, boolean taxesIncluded, String tax1Title, BigDecimal tax1Price, String tax1Rate, String tax2Title, BigDecimal tax2Price, String tax2Rate, String tax3Title, BigDecimal tax3Price, String tax3Rate, BigDecimal transactionAmount, TransactionKind transactionKind, TransactionStatus transactionStatus, String transactionProcessedAt, String transactionGateway, String transactionLocationId, String transactionSourceName, String shippingLineCode, String shippingLinePrice, String shippingLineSource, String shippingLineTitle, String shippingLineCarrierIdentifier, String shippingLineRequestedFullfillmentServiceId, String shippingTax1Title, BigDecimal shippingTax1Rate, BigDecimal shippingTaxPrice, String discountCode, String discountAmount, DiscountType discountType, String metafieldNamespace, String metafieldKey, String metafieldValue, String metafieldValueType) {
 		this.name = name;
 		this.email = email;
 		this.financialStatus = financialStatus;
@@ -267,7 +267,7 @@ public final class OrderCsv implements Csv {
 		this.lineitemSku = lineitemSku;
 		this.lineitemRequiresShipping = lineitemRequiresShipping;
 		this.lineitemTaxable = lineitemTaxable;
-		this.lineitemFullfillmentStatus = lineitemFullfillmentStatus;
+		this.lineitemFulfillmentStatus = lineitemFulfillmentStatus;
 		this.taxesIncluded = taxesIncluded;
 		this.tax1Title = tax1Title;
 		this.tax1Price = tax1Price;
@@ -511,8 +511,8 @@ public final class OrderCsv implements Csv {
 		return lineitemTaxable;
 	}
 
-	public String getLineitemFullfillmentStatus() {
-		return lineitemFullfillmentStatus;
+	public LineitemFulfillmentStatus getLineitemFulfillmentStatus() {
+		return lineitemFulfillmentStatus;
 	}
 
 	public boolean isTaxesIncluded() {
