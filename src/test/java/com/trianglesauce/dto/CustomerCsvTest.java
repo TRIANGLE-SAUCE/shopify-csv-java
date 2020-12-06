@@ -1,7 +1,6 @@
 package com.trianglesauce.dto;
 
 import com.trianglesauce.enums.AcceptsMarketing;
-import com.trianglesauce.enums.MetafieldValueType;
 import com.trianglesauce.enums.TaxExempt;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -25,9 +24,6 @@ class CustomerCsvTest {
 				.withPhone("1234567")
 				.withTags("tag1,tag2,tag3")
 				.withNote("triangle-sauce")
-				.withMetafieldKey("test-key")
-				.withMetafieldValue("test-value")
-				.withMetafieldValueType(MetafieldValueType.STRING)
 				.build();
 
 		Assertions.assertThat(actual)
@@ -47,11 +43,7 @@ class CustomerCsvTest {
 						CustomerCsv::getAcceptsMarketing,
 						CustomerCsv::getTags,
 						CustomerCsv::getNote,
-						CustomerCsv::getTaxExempt,
-						CustomerCsv::getMetafieldNamespace,
-						CustomerCsv::getMetafieldKey,
-						CustomerCsv::getMetafieldValue,
-						CustomerCsv::getMetafieldValueType)
+						CustomerCsv::getTaxExempt)
 				.containsExactly(
 						"Taro",
 						"Tanaka",
@@ -68,10 +60,6 @@ class CustomerCsvTest {
 						AcceptsMarketing.NO,
 						"tag1,tag2,tag3",
 						"triangle-sauce",
-						TaxExempt.NO,
-						"global",
-						"test-key",
-						"test-value",
-						MetafieldValueType.STRING);
+						TaxExempt.NO);
 	}
 }

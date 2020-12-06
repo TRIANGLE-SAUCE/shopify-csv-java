@@ -1,7 +1,6 @@
 package com.trianglesauce.dto;
 
 import com.trianglesauce.enums.AcceptsMarketing;
-import com.trianglesauce.enums.MetafieldValueType;
 import com.trianglesauce.enums.TaxExempt;
 
 public class CustomerCsvBuilder {
@@ -22,10 +21,6 @@ public class CustomerCsvBuilder {
     private String tags;
     private String note;
     private TaxExempt taxExempt = TaxExempt.NO;
-    private String metafieldNamespace;
-    private String metafieldKey;
-    private String metafieldValue;
-    private MetafieldValueType metafieldValueType;
 
     public CustomerCsvBuilder withFirstName(String firstName) {
         this.firstName = firstName;
@@ -112,30 +107,6 @@ public class CustomerCsvBuilder {
         return this;
     }
 
-    public CustomerCsvBuilder withMetafieldNamespace(String metafieldNamespace) {
-        this.metafieldNamespace = metafieldNamespace;
-        return this;
-    }
-
-    public CustomerCsvBuilder withMetafieldKey(String metafieldKey) {
-        this.metafieldKey = metafieldKey;
-        return this;
-    }
-
-    public CustomerCsvBuilder withMetafieldValue(String metafieldValue) {
-        this.metafieldValue = metafieldValue;
-        return this;
-    }
-
-    public CustomerCsvBuilder withMetafieldValueType(MetafieldValueType metafieldValueType) {
-        this.metafieldValueType = metafieldValueType;
-        return this;
-    }
-
-    private boolean hasMetafield() {
-        return metafieldKey != null || metafieldValue != null || metafieldValueType != null;
-    }
-
     public CustomerCsv build() {
         return new CustomerCsv(
                 firstName,
@@ -154,10 +125,6 @@ public class CustomerCsvBuilder {
                 acceptsMarketing,
                 tags,
                 note,
-                taxExempt,
-                metafieldNamespace == null && hasMetafield() ? "global" : metafieldNamespace,
-                metafieldKey,
-                metafieldValue,
-                metafieldValueType);
+                taxExempt);
     }
 }

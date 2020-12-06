@@ -3,15 +3,13 @@ package com.trianglesauce.dto;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.trianglesauce.enums.AcceptsMarketing;
-import com.trianglesauce.enums.MetafieldValueType;
 import com.trianglesauce.enums.TaxExempt;
 
 @JsonPropertyOrder({
 		"First Name", "Last Name", "Email", "Company", "Address1",
 		"Address2", "City", "Province", "Province Code", "Country",
 		"Country Code", "Zip", "Phone", "Accepts Marketing", "Tags",
-		"Note", "Tax Exempt", "Metafield Namespace", "Metafield Key", "Metafield Value",
-		"Metafield Value Type"
+		"Note", "Tax Exempt"
 })
 public final class CustomerCsv implements Csv {
 	@JsonProperty("First Name")
@@ -48,14 +46,6 @@ public final class CustomerCsv implements Csv {
 	private final String note;
 	@JsonProperty("Tax Exempt")
 	private final TaxExempt taxExempt;
-	@JsonProperty("Metafield Namespace")
-	private final String metafieldNamespace;
-	@JsonProperty("Metafield Key")
-	private final String metafieldKey;
-	@JsonProperty("Metafield Value")
-	private final String metafieldValue;
-	@JsonProperty("Metafield Value Type")
-	private final MetafieldValueType metafieldValueType;
 
 	public String getFirstName() {
 		return firstName;
@@ -125,26 +115,6 @@ public final class CustomerCsv implements Csv {
 		return taxExempt;
 	}
 
-	public String getMetafieldNamespace() {
-		return metafieldNamespace;
-	}
-
-	public String getMetafieldKey() {
-		return metafieldKey;
-	}
-
-	public String getMetafieldValue() {
-		return metafieldValue;
-	}
-
-	public MetafieldValueType getMetafieldValueType() {
-		return metafieldValueType;
-	}
-
-	public boolean hasMetafield() {
-		return getMetafieldNamespace() != null;
-	}
-
 	CustomerCsv(
 			String firstName,
 			String lastName,
@@ -162,11 +132,7 @@ public final class CustomerCsv implements Csv {
 			AcceptsMarketing acceptsMarketing,
 			String tags,
 			String note,
-			TaxExempt taxExempt,
-			String metafieldNamespace,
-			String metafieldKey,
-			String metafieldValue,
-			MetafieldValueType metafieldValueType) {
+			TaxExempt taxExempt) {
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.email = email;
@@ -184,9 +150,5 @@ public final class CustomerCsv implements Csv {
 		this.tags = tags;
 		this.note = note;
 		this.taxExempt = taxExempt;
-		this.metafieldNamespace = metafieldNamespace;
-		this.metafieldKey = metafieldKey;
-		this.metafieldValue = metafieldValue;
-		this.metafieldValueType = metafieldValueType;
 	}
 }

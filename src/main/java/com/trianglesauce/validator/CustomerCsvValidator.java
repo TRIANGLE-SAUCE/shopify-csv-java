@@ -31,9 +31,6 @@ public class CustomerCsvValidator implements CsvValidator<CustomerCsv> {
 		if (hasText(customerCsv.getTags()) && customerCsv.getTags().length() > getTagsLength()) {
 			throw new IllegalArgumentException("tags must not be greater than " + getTagsLength() + ".");
 		}
-
-		// metafield
-		validateMetafield(customerCsv);
 	}
 
 	private void validateUniqueKeys(CustomerCsv customerCsv) {
@@ -44,22 +41,5 @@ public class CustomerCsvValidator implements CsvValidator<CustomerCsv> {
 		}
 
 		validateEmail(customerCsv.getEmail(), "email is invalid format.");
-	}
-
-	private void validateMetafield(CustomerCsv customerCsv) {
-		if (customerCsv.hasMetafield()) {
-			Assert.notNull(customerCsv.getMetafieldKey(), "metafield key must not be null");
-			if (customerCsv.getMetafieldKey().length() > getMetafieldKeyLength()) {
-				throw new IllegalArgumentException("metafield key must not be greater than " + getMetafieldKeyLength() + ".");
-			}
-
-			Assert.notNull(customerCsv.getMetafieldValue(), "metafield value must not be null.");
-			Assert.notNull(customerCsv.getMetafieldValueType(), "metafield value type must not be null.");
-
-			Assert.notNull(customerCsv.getMetafieldNamespace(), "metafield namespace must not be null");
-			if (customerCsv.getMetafieldNamespace().length() > getMetafieldNamespaceLength()) {
-				throw new IllegalArgumentException("metafield namespace must not be greater than " + getMetafieldNamespaceLength() + ".");
-			}
-		}
 	}
 }

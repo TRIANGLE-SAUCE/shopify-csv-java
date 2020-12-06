@@ -2,7 +2,6 @@ package com.trianglesauce.validator;
 
 import com.trianglesauce.dto.CustomerCsv;
 import com.trianglesauce.dto.CustomerCsvBuilder;
-import com.trianglesauce.enums.MetafieldValueType;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
@@ -40,9 +39,6 @@ class CustomerCsvValidatorTest {
 					.withPhone("1234567")
 					.withTags("tag1,tag2,tag3")
 					.withNote("triangle-sauce")
-					.withMetafieldKey("test-key")
-					.withMetafieldValue("test-value")
-					.withMetafieldValueType(MetafieldValueType.STRING)
 					.build();
 			Assertions.assertThatCode(() -> customerCsvValidator.validate(customerCsv))
 					.doesNotThrowAnyException();
@@ -155,98 +151,6 @@ class CustomerCsvValidatorTest {
 			Assertions.assertThatThrownBy(() -> customerCsvValidator.validate(customerCsv))
 					.isInstanceOf(IllegalArgumentException.class)
 					.hasMessage("tags must not be greater than 255.");
-		}
-
-		@Test
-		void metafieldKeyOverLimit() {
-			String metafieldKey = IntStream.rangeClosed(0, 30)
-					.boxed()
-					.map(Object::toString)
-					.collect(Collectors.joining());
-			CustomerCsv customerCsv = new CustomerCsvBuilder()
-					.withFirstName("Taro")
-					.withLastName("Tanaka")
-					.withEmail("test@triangle-sauce.com")
-					.withPhone("1234567")
-					.withAddress1("1-11-17 Ebisu")
-					.withCity("Shibuya Ward")
-					.withProvince("Tokyo")
-					.withProvinceCode("13")
-					.withCountry("Japan")
-					.withCountryCode("JP")
-					.withTags("tag1,tag2,tag3")
-					.withMetafieldKey(metafieldKey)
-					.build();
-			Assertions.assertThatThrownBy(() -> customerCsvValidator.validate(customerCsv))
-					.isInstanceOf(IllegalArgumentException.class)
-					.hasMessage("metafield key must not be greater than 30.");
-		}
-
-		@Test
-		void metafieldValueRequired() {
-			CustomerCsv customerCsv = new CustomerCsvBuilder()
-					.withFirstName("Taro")
-					.withLastName("Tanaka")
-					.withEmail("test@triangle-sauce.com")
-					.withPhone("1234567")
-					.withAddress1("1-11-17 Ebisu")
-					.withCity("Shibuya Ward")
-					.withProvince("Tokyo")
-					.withProvinceCode("13")
-					.withCountry("Japan")
-					.withCountryCode("JP")
-					.withTags("tag1,tag2,tag3")
-					.withMetafieldKey("key")
-					.build();
-			Assertions.assertThatThrownBy(() -> customerCsvValidator.validate(customerCsv))
-					.isInstanceOf(IllegalArgumentException.class)
-					.hasMessage("metafield value must not be null.");
-		}
-
-		@Test
-		void metafieldValueTypeRequired() {
-			CustomerCsv customerCsv = new CustomerCsvBuilder()
-					.withFirstName("Taro")
-					.withLastName("Tanaka")
-					.withEmail("test@triangle-sauce.com")
-					.withPhone("1234567")
-					.withAddress1("1-11-17 Ebisu")
-					.withCity("Shibuya Ward")
-					.withProvince("Tokyo")
-					.withProvinceCode("13")
-					.withCountry("Japan")
-					.withCountryCode("JP")
-					.withTags("tag1,tag2,tag3")
-					.withMetafieldKey("key")
-					.withMetafieldValue("value")
-					.build();
-			Assertions.assertThatThrownBy(() -> customerCsvValidator.validate(customerCsv))
-					.isInstanceOf(IllegalArgumentException.class)
-					.hasMessage("metafield value type must not be null.");
-		}
-
-		@Test
-		void metafieldNamespaceOverlimit() {
-			CustomerCsv customerCsv = new CustomerCsvBuilder()
-					.withFirstName("Taro")
-					.withLastName("Tanaka")
-					.withEmail("test@triangle-sauce.com")
-					.withPhone("1234567")
-					.withAddress1("1-11-17 Ebisu")
-					.withCity("Shibuya Ward")
-					.withProvince("Tokyo")
-					.withProvinceCode("13")
-					.withCountry("Japan")
-					.withCountryCode("JP")
-					.withTags("tag1,tag2,tag3")
-					.withMetafieldKey("key")
-					.withMetafieldValue("value")
-					.withMetafieldValueType(MetafieldValueType.STRING)
-					.withMetafieldNamespace("AAAAAAAAAAAAAAAAAAAAA")
-					.build();
-			Assertions.assertThatThrownBy(() -> customerCsvValidator.validate(customerCsv))
-					.isInstanceOf(IllegalArgumentException.class)
-					.hasMessage("metafield namespace must not be greater than 20.");
 		}
 	}
 
