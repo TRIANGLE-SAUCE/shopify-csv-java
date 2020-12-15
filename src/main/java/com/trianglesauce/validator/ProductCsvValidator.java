@@ -46,9 +46,6 @@ public class ProductCsvValidator implements CsvValidator<ProductCsv> {
 			throw new IllegalArgumentException("option3 name must not be greater than " + OPTIONAL_NAME_LENGTH + ".");
 		}
 
-		// metafield
-		validateMetafield(productCsv);
-
 		// variant
 		validateVariant(productCsv);
 
@@ -63,23 +60,6 @@ public class ProductCsvValidator implements CsvValidator<ProductCsv> {
 		}
 		if (!productCsv.getPublished() && productCsv.getPublishedAt() != null) {
 			throw new IllegalArgumentException("publishedAt cannot be specified when published is false.");
-		}
-	}
-
-	private void validateMetafield(ProductCsv productCsv) {
-		if (productCsv.hasMetafield()) {
-			Assert.notNull(productCsv.getMetafieldKey(), "metafield key must not be null");
-			if (productCsv.getMetafieldKey().length() > getMetafieldKeyLength()) {
-				throw new IllegalArgumentException("metafield key must not be greater than " + getMetafieldKeyLength() + ".");
-			}
-
-			Assert.notNull(productCsv.getMetafieldValue(), "metafield value must not be null.");
-			Assert.notNull(productCsv.getMetafieldValueType(), "metafield value type must not be null.");
-
-			Assert.notNull(productCsv.getMetafieldNamespace(), "metafield namespace must not be null");
-			if (productCsv.getMetafieldNamespace().length() > getMetafieldNamespaceLength()) {
-				throw new IllegalArgumentException("metafield namespace must not be greater than " + getMetafieldNamespaceLength() + ".");
-			}
 		}
 	}
 

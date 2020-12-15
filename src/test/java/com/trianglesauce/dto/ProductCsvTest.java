@@ -24,7 +24,6 @@ class ProductCsvTest {
 				.withOption3Name("Material")
 				.withOption3Value("wool")
 				.withVariantSKU("IPOD2008PINK")
-				.withMetafieldNamespace("global")
 				.build();
 
 		Assertions.assertThat(actual)
@@ -46,7 +45,6 @@ class ProductCsvTest {
 						ProductCsv::getOption3Name,
 						ProductCsv::getOption3Value,
 						ProductCsv::getVariantSKU,
-						ProductCsv::getMetafieldNamespace,
 						ProductCsv::getVariantInventoryPolicy,
 						ProductCsv::getVariantFulfillmentService,
 						ProductCsv::getVariantRequiresShipping,
@@ -70,7 +68,6 @@ class ProductCsvTest {
 						"Material",
 						"wool",
 						"IPOD2008PINK",
-						"global",
 						null,
 						null,
 						null,

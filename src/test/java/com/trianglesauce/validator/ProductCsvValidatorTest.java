@@ -2,7 +2,6 @@ package com.trianglesauce.validator;
 
 import com.trianglesauce.dto.ProductCsv;
 import com.trianglesauce.dto.ProductCsvBuilder;
-import com.trianglesauce.enums.MetafieldValueType;
 import com.trianglesauce.enums.VariantFulfillmentService;
 import com.trianglesauce.enums.VariantWeightUnit;
 import org.assertj.core.api.Assertions;
@@ -44,9 +43,6 @@ class ProductCsvValidatorTest {
 					.withOption3Value("wool")
 					.withVariantSKU("IPOD2008PINK")
 					.withVariantFulfillmentService(VariantFulfillmentService.HANDLE_OF_THE_FULFILLMENT_SERVICE)
-					.withMetafieldKey("test-key")
-					.withMetafieldValue("test-value")
-					.withMetafieldValueType(MetafieldValueType.STRING)
 					.build();
 			Assertions.assertThatCode(() -> productCsvValidator.validate(productCsv))
 					.doesNotThrowAnyException();
@@ -65,9 +61,6 @@ class ProductCsvValidatorTest {
 					.withOption2Value("small")
 					.withOption3Name("Material")
 					.withOption3Value("wool")
-					.withMetafieldKey("test-key")
-					.withMetafieldValue("test-value")
-					.withMetafieldValueType(MetafieldValueType.STRING)
 					.build();
 			Assertions.assertThatThrownBy(() -> productCsvValidator.validate(productCsv))
 					.isInstanceOf(IllegalArgumentException.class)
@@ -87,9 +80,6 @@ class ProductCsvValidatorTest {
 					.withOption2Value("small")
 					.withOption3Name("Material")
 					.withOption3Value("wool")
-					.withMetafieldKey("test-key")
-					.withMetafieldValue("test-value")
-					.withMetafieldValueType(MetafieldValueType.STRING)
 					.build();
 			Assertions.assertThatThrownBy(() -> productCsvValidator.validate(productCsv))
 					.isInstanceOf(IllegalArgumentException.class)
@@ -114,9 +104,6 @@ class ProductCsvValidatorTest {
 					.withOption2Value("small")
 					.withOption3Name("Material")
 					.withOption3Value("wool")
-					.withMetafieldKey("test-key")
-					.withMetafieldValue("test-value")
-					.withMetafieldValueType(MetafieldValueType.STRING)
 					.withTags(tags)
 					.build();
 			Assertions.assertThatThrownBy(() -> productCsvValidator.validate(productCsv))
@@ -139,9 +126,6 @@ class ProductCsvValidatorTest {
 					.withOption2Value("small")
 					.withOption3Name("Material")
 					.withOption3Value("wool")
-					.withMetafieldKey("test-key")
-					.withMetafieldValue("test-value")
-					.withMetafieldValueType(MetafieldValueType.STRING)
 					.build();
 			Assertions.assertThatThrownBy(() -> productCsvValidator.validate(productCsv))
 					.isInstanceOf(IllegalArgumentException.class)
@@ -166,9 +150,6 @@ class ProductCsvValidatorTest {
 					.withOption2Value("small")
 					.withOption3Name("Material")
 					.withOption3Value("wool")
-					.withMetafieldKey("test-key")
-					.withMetafieldValue("test-value")
-					.withMetafieldValueType(MetafieldValueType.STRING)
 					.build();
 			Assertions.assertThatThrownBy(() -> productCsvValidator.validate(productCsv))
 					.isInstanceOf(IllegalArgumentException.class)
@@ -193,9 +174,6 @@ class ProductCsvValidatorTest {
 					.withOption2Value("small")
 					.withOption3Name("Material")
 					.withOption3Value("wool")
-					.withMetafieldKey("test-key")
-					.withMetafieldValue("test-value")
-					.withMetafieldValueType(MetafieldValueType.STRING)
 					.build();
 			Assertions.assertThatThrownBy(() -> productCsvValidator.validate(productCsv))
 					.isInstanceOf(IllegalArgumentException.class)
@@ -220,9 +198,6 @@ class ProductCsvValidatorTest {
 					.withOption2Value("small")
 					.withOption3Name(name)
 					.withOption3Value("wool")
-					.withMetafieldKey("test-key")
-					.withMetafieldValue("test-value")
-					.withMetafieldValueType(MetafieldValueType.STRING)
 					.build();
 			Assertions.assertThatThrownBy(() -> productCsvValidator.validate(productCsv))
 					.isInstanceOf(IllegalArgumentException.class)
@@ -247,9 +222,6 @@ class ProductCsvValidatorTest {
 					.withOption2Value("small")
 					.withOption3Name("Material")
 					.withOption3Value("wool")
-					.withMetafieldKey("test-key")
-					.withMetafieldValue("test-value")
-					.withMetafieldValueType(MetafieldValueType.STRING)
 					.withImageAltText(imageAltText)
 					.build();
 			Assertions.assertThatThrownBy(() -> productCsvValidator.validate(productCsv))
@@ -271,9 +243,6 @@ class ProductCsvValidatorTest {
 					.withOption2Value("small")
 					.withOption3Name("Material")
 					.withOption3Value("wool")
-					.withMetafieldKey("test-key")
-					.withMetafieldValue("test-value")
-					.withMetafieldValueType(MetafieldValueType.STRING)
 					.withVariantGrams(BigDecimal.TEN)
 					.withVariantWeight(BigDecimal.TEN)
 					.build();
@@ -296,9 +265,6 @@ class ProductCsvValidatorTest {
 					.withOption2Value("small")
 					.withOption3Name("Material")
 					.withOption3Value("wool")
-					.withMetafieldKey("test-key")
-					.withMetafieldValue("test-value")
-					.withMetafieldValueType(MetafieldValueType.STRING)
 					.withVariantGrams(BigDecimal.TEN)
 					.withVariantWeightUnit(VariantWeightUnit.KG)
 					.build();

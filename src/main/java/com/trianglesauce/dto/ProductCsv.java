@@ -3,12 +3,7 @@ package com.trianglesauce.dto;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
-import com.trianglesauce.enums.MetafieldValueType;
-import com.trianglesauce.enums.PublishScope;
-import com.trianglesauce.enums.VariantFulfillmentService;
-import com.trianglesauce.enums.VariantInventoryPolicy;
-import com.trianglesauce.enums.VariantInventoryTracker;
-import com.trianglesauce.enums.VariantWeightUnit;
+import com.trianglesauce.enums.*;
 import com.trianglesauce.serializer.ZonedDateTimeSerializer;
 
 import java.math.BigDecimal;
@@ -17,10 +12,8 @@ import java.time.ZonedDateTime;
 @JsonPropertyOrder({
 		"Handle", "Title", "Body", "Vendor", "Type", "Tags", "Template Suffix", "Published Scope",
 		"Published", "Published At", "Option1 Name", "Option1 Value", "Option2 Name", "Option2 Value",
-		"Option3 Name", "Option3 Value", "Variant SKU", "Metafields Global Title Tag",
-		"Metafields Global Description Tag", "Metafield Namespace", "Metafield Key", "Metafield Value",
-		"Metafield Value Type", "Variant Grams", "Variant Inventory Trackers", "Variant Inventory Qty",
-		"Variant Inventory Policy", "Variant Inventory Cost", "Variant Fulfillment Service",
+		"Option3 Name", "Option3 Value", "Variant SKU", "Variant Grams", "Variant Inventory Trackers",
+		"Variant Inventory Qty", "Variant Inventory Policy", "Variant Inventory Cost", "Variant Fulfillment Service",
 		"Variant Price", "Variant Compare At Price", "Variant Requires Shipping", "Variant Taxable",
 		"Variant Barcode", "Image Attachment", "Image Src", "Image Position", "Image Alt Text",
 		"Variant Image", "Variant Weight", "Variant Weight Unit", "Variant Tax Code",
@@ -61,18 +54,6 @@ public final class ProductCsv implements Csv {
 	private final String option3Value;
 	@JsonProperty("Variant SKU")
 	private final String variantSKU;
-	@JsonProperty("Metafields Global Title Tag")
-	private final String metafieldsGlobalTitleTag;
-	@JsonProperty("Metafields Global Description Tag")
-	private final String metafieldsGlobalDescriptionTag;
-	@JsonProperty("Metafield Namespace")
-	private final String metafieldNamespace;
-	@JsonProperty("Metafield Key")
-	private final String metafieldKey;
-	@JsonProperty("Metafield Value")
-	private final String metafieldValue;
-	@JsonProperty("Metafield Value Type")
-	private final MetafieldValueType metafieldValueType;
 	@JsonProperty("Variant Grams")
 	private final BigDecimal variantGrams;
 	@JsonProperty("Variant Inventory Trackers")
@@ -180,30 +161,6 @@ public final class ProductCsv implements Csv {
 		return variantSKU;
 	}
 
-	public String getMetafieldsGlobalTitleTag() {
-		return metafieldsGlobalTitleTag;
-	}
-
-	public String getMetafieldsGlobalDescriptionTag() {
-		return metafieldsGlobalDescriptionTag;
-	}
-
-	public String getMetafieldNamespace() {
-		return metafieldNamespace;
-	}
-
-	public String getMetafieldKey() {
-		return metafieldKey;
-	}
-
-	public String getMetafieldValue() {
-		return metafieldValue;
-	}
-
-	public MetafieldValueType getMetafieldValueType() {
-		return metafieldValueType;
-	}
-
 	public BigDecimal getVariantGrams() {
 		return variantGrams;
 	}
@@ -280,10 +237,6 @@ public final class ProductCsv implements Csv {
 		return variantTaxCode;
 	}
 
-	public boolean hasMetafield() {
-		return getMetafieldNamespace() != null;
-	}
-
 	ProductCsv(
 			String handle,
 			String title,
@@ -302,12 +255,6 @@ public final class ProductCsv implements Csv {
 			String option3Name,
 			String option3Value,
 			String variantSKU,
-			String metafieldsGlobalTitleTag,
-			String metafieldsGlobalDescriptionTag,
-			String metafieldNamespace,
-			String metafieldKey,
-			String metafieldValue,
-			MetafieldValueType metafieldValueType,
 			BigDecimal variantGrams,
 			VariantInventoryTracker variantInventoryTracker,
 			Integer variantInventoryQty,
@@ -344,12 +291,6 @@ public final class ProductCsv implements Csv {
 		this.option3Name = option3Name;
 		this.option3Value = option3Value;
 		this.variantSKU = variantSKU;
-		this.metafieldsGlobalTitleTag = metafieldsGlobalTitleTag;
-		this.metafieldsGlobalDescriptionTag = metafieldsGlobalDescriptionTag;
-		this.metafieldNamespace = metafieldNamespace;
-		this.metafieldKey = metafieldKey;
-		this.metafieldValue = metafieldValue;
-		this.metafieldValueType = metafieldValueType;
 		this.variantGrams = variantGrams;
 		this.variantInventoryTracker = variantInventoryTracker;
 		this.variantInventoryQty = variantInventoryQty;

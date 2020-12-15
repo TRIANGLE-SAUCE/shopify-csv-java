@@ -23,12 +23,6 @@ public class ProductCsvBuilder {
     private String option3Name;
     private String option3Value;
     private String variantSKU;
-    private String metafieldsGlobalTitleTag;
-    private String metafieldsGlobalDescriptionTag;
-    private String metafieldNamespace;
-    private String metafieldKey;
-    private String metafieldValue;
-    private MetafieldValueType metafieldValueType;
     private BigDecimal variantGrams;
     private VariantInventoryTracker variantInventoryTracker;
     private Integer variantInventoryQty;
@@ -131,36 +125,6 @@ public class ProductCsvBuilder {
 
     public ProductCsvBuilder withVariantSKU(String variantSKU) {
         this.variantSKU = variantSKU;
-        return this;
-    }
-
-    public ProductCsvBuilder withMetafieldsGlobalTitleTag(String metafieldsGlobalTitleTag) {
-        this.metafieldsGlobalTitleTag = metafieldsGlobalTitleTag;
-        return this;
-    }
-
-    public ProductCsvBuilder withMetafieldsGlobalDescriptionTag(String metafieldsGlobalDescriptionTag) {
-        this.metafieldsGlobalDescriptionTag = metafieldsGlobalDescriptionTag;
-        return this;
-    }
-
-    public ProductCsvBuilder withMetafieldNamespace(String metafieldNamespace) {
-        this.metafieldNamespace = metafieldNamespace;
-        return this;
-    }
-
-    public ProductCsvBuilder withMetafieldKey(String metafieldKey) {
-        this.metafieldKey = metafieldKey;
-        return this;
-    }
-
-    public ProductCsvBuilder withMetafieldValue(String metafieldValue) {
-        this.metafieldValue = metafieldValue;
-        return this;
-    }
-
-    public ProductCsvBuilder withMetafieldValueType(MetafieldValueType metafieldValueType) {
-        this.metafieldValueType = metafieldValueType;
         return this;
     }
 
@@ -278,12 +242,6 @@ public class ProductCsvBuilder {
                 option3Name,
                 option3Value,
                 variantSKU,
-                metafieldsGlobalTitleTag,
-                metafieldsGlobalDescriptionTag,
-                metafieldNamespace,
-                metafieldKey,
-                metafieldValue,
-                metafieldValueType,
                 variantGrams,
                 variantInventoryTracker,
                 variantInventoryQty,
